@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ESG Projekt – pracovní verze</title>
+  <meta name="description" content="Základní kostra webu projektu zaměřeného na ESG." />
+  <style>
+    :root {
+      /* ESGbox – box / fight identity */
+      --bg: #0b0f14;          /* temná aréna */
+      --fg: #e6e6e6;          /* čitelný text */
+      --muted: #9aa4b2;       /* sekundární informace */
+      --accent: #f97316;       /* industriální oranžová – box, varování, energie */
+      --accent-2: #0ea5a5;    /* technická tyrkysová – systém, kontrola */    /* technická tyrkysová – systém, řád */
+      --card: #111827;        /* krabice / box */
+      --border: #1f2937;
+      --maxw: 1100px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
+      background: linear-gradient(180deg, #020617, #020617 40%, #020617);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header { border-bottom: 1px solid var(--border); background: rgba(2,6,23,.85); backdrop-filter: blur(6px); position: sticky; top: 0; z-index: 10; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 1rem; }
+    nav { display: flex; gap: 1rem; align-items: center; justify-content: space-between; }
+    .brand {
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .menu a { margin-left: 1rem; color: var(--fg); }
+    .hero { padding: 3rem 1rem; background: radial-gradient(1200px 400px at 50% -10%, rgba(34,197,94,.15), transparent 40%); }
+    .hero h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 0 0 .5rem 0; }
+    .hero p { color: var(--muted); max-width: 60ch; }
+    main { padding: 2rem 1rem; }
+    section { margin-bottom: 2.5rem; }
+    h2 {
+      border-left: 6px solid var(--accent);
+      padding-left: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--fg);
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+    .card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 6px; /* méně kulaté = techničtější */
+      padding: 1rem;
+    }
+    footer { border-top: 1px solid var(--border); color: var(--muted); }
+    .small { font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <div class="brand">ESGbox</div>
+        <div class="menu">
+          <a href="#o-projektu">O projektu</a>
+          <a href="#metodika">Metodika</a>
+          <a href="#vystupy">Výstupy</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>ESGbox: ESG jako nástroj modernizace a řízení rizik</h1>
+      <p>ESGbox je projekt zaměřený na malé a střední podniky. Jeho cílem je ukázat, že ESG není PR fráze ani administrativní zátěž, ale praktický nástroj pro modernizaci podniku, řízení rizik a dlouhodobou konkurenceschopnost.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+      <section id="o-projektu">
+        <h2>Proč ESGbox existuje</h2>
+        <p>ESGbox vznikl z jednoduchého pozorování: malé a střední podniky nejsou problémem ESG, ale jeho obětí. Ne kvůli neochotě, ale kvůli chaosu, nejasným pravidlům a jazyku, který nepatří do řízení firmy.</p>
+        <p>Naším cílem není přesvědčovat ani moralizovat. ESGbox má podnikatele zbavit zbytečné zátěže tím, že nejdůležitější prvky ESG přehledně uzavře do jednoho funkčního rámce.</p>
+      </section>
+
+      <section id="metodika">
+        <h2>Jak za vás stojíme v ringu</h2>
+        <div class="grid">
+          <div class="card">
+            <strong>Krytí rizik</strong><br />
+            Identifikujeme regulatorní, provozní a reputační rizika dříve, než přerostou v sankce, ztráty nebo krizové situace.
+          </div>
+          <div class="card">
+            <strong>Pevný postoj</strong><br />
+            Překládáme požadavky ESG do jazyka procesů, odpovědností a rozhodování, kterému management skutečně rozumí.
+          </div>
+          <div class="card">
+            <strong>Úder na slabá místa</strong><br />
+            Zaměřujeme se jen na to, co je podstatné. Bez zbytečných reportů, bez formálních gest, bez ESG divadla.
+          </div>
+        </div>
+      </section>
+
+      <section id="vystupy">
+        <h2>S čím odcházíte z arény</h2>
+        <div class="grid">
+          <div class="card">Jasná struktura odpovědností a procesů</div>
+          <div class="card">Podklady připravené pro kontrolu, audit nebo partnera</div>
+          <div class="card">ESG řešené jako součást řízení, ne jako vedlejší projekt</div>
+        </div>
+      </section>
+
+      <section id="kontakt">
+        <h2>Kontakt</h2>
+        <p class="small">Kontaktní údaje, případně institucionální ukotvení projektu.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap small">© 2026 – pracovní verze webu ESG projektu</div>
+  </footer>
+</body>
+</html>
