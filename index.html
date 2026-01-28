@@ -6,56 +6,148 @@
   <title>ESG Projekt – pracovní verze</title>
   <meta name="description" content="Základní kostra webu projektu zaměřeného na ESG." />
   <style>
+    /* =========================
+       TYPOGRAFIE – ESGbox
+       ========================= */
+
+    /* Open‑source fonty */
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
     :root {
-      /* ESGbox – box / fight identity */
+      /* ESGbox – box / industriální identita */
       --bg: #0b0f14;          /* temná aréna */
-      --fg: #e6e6e6;          /* čitelný text */
-      --muted: #9aa4b2;       /* sekundární informace */
-      --accent: #f97316;       /* industriální oranžová – box, varování, energie */
-      --accent-2: #0ea5a5;    /* technická tyrkysová – systém, kontrola */    /* technická tyrkysová – systém, řád */
+      --fg: #e6e6e6;          /* hlavní text */
+      --muted: #9aa4b2;       /* sekundární text */
+      --accent: #f97316;      /* industriální oranžová */
+      --accent-2: #0ea5a5;    /* technická tyrkysová */
       --card: #111827;        /* krabice / box */
       --border: #1f2937;
       --maxw: 1100px;
     }
+
     * { box-sizing: border-box; }
+
     body {
-      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
       background: linear-gradient(180deg, #020617, #020617 40%, #020617);
       color: var(--fg);
-      line-height: 1.6;
+      line-height: 1.65;
+      font-weight: 400;
+      letter-spacing: 0.01em;
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    header { border-bottom: 1px solid var(--border); background: rgba(2,6,23,.85); backdrop-filter: blur(6px); position: sticky; top: 0; z-index: 10; }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 1rem; }
-    nav { display: flex; gap: 1rem; align-items: center; justify-content: space-between; }
-    .brand {
-      font-weight: 800;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-    .menu a { margin-left: 1rem; color: var(--fg); }
-    .hero { padding: 3rem 1rem; background: radial-gradient(1200px 400px at 50% -10%, rgba(34,197,94,.15), transparent 40%); }
-    .hero h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 0 0 .5rem 0; }
-    .hero p { color: var(--muted); max-width: 60ch; }
-    main { padding: 2rem 1rem; }
-    section { margin-bottom: 2.5rem; }
-    h2 {
-      border-left: 6px solid var(--accent);
-      padding-left: .75rem;
-      text-transform: uppercase;
-      letter-spacing: .06em;
+
+    /* =========================
+       ZÁKLADNÍ TEXT
+       ========================= */
+
+    p {
+      max-width: 70ch; /* kontrola délky řádku */
       color: var(--fg);
     }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+
+    .small {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* =========================
+       NADPISY – pevné, technické
+       ========================= */
+
+    h1, h2, h3 {
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      margin: 0 0 1rem 0;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      border-left: 6px solid var(--accent);
+      padding-left: 0.75rem;
+    }
+
+    /* =========================
+       ROZVRŽENÍ
+       ========================= */
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(2,6,23,.85);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 1.25rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .menu a {
+      margin-left: 1rem;
+      color: var(--fg);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 3.5rem 1rem 4rem;
+      background: radial-gradient(1200px 400px at 50% -10%, rgba(249,115,22,.18), transparent 45%);
+    }
+
+    main { padding: 2.5rem 1rem; }
+
+    section { margin-bottom: 3.5rem; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
     .card {
       background: var(--card);
-      border: 2px solid var(--border);
-      border-radius: 6px; /* méně kulaté = techničtější */
-      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      font-size: 0.95rem;
     }
-    footer { border-top: 1px solid var(--border); color: var(--muted); }
-    .small { font-size: .9rem; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
   </style>
 </head>
 <body>
@@ -75,8 +167,29 @@
 
   <section class="hero">
     <div class="wrap">
-      <h1>ESGbox: ESG jako nástroj modernizace a řízení rizik</h1>
-      <p>ESGbox je projekt zaměřený na malé a střední podniky. Jeho cílem je ukázat, že ESG není PR fráze ani administrativní zátěž, ale praktický nástroj pro modernizaci podniku, řízení rizik a dlouhodobou konkurenceschopnost.</p>
+      <h1>ESG není příběh.<br />Je to systém řízení.</h1>
+      <p>
+        ESGbox dává malým a středním podnikům pevný rámec pro řízení environmentálních,
+        sociálních a regulatorních rizik – bez moralizování, bez PR, bez zbytečné administrativy.
+      </p>
+      <p class="small">
+        Co zůstává v boxu: to podstatné. Co zůstává venku: chaos, nejasnost a ESG divadlo.
+      </p>
+
+      <div class="grid" style="margin-top:2.25rem">
+        <div class="card">
+          <h3>Rizika</h3>
+          <p class="small">Identifikace a prioritizace environmentálních, sociálních a regulatorních rizik dříve, než se projeví v nákladech, sankcích nebo ztrátě zakázek.</p>
+        </div>
+        <div class="card">
+          <h3>Odpovědnosti</h3>
+          <p class="small">Jasné role, procesy a vlastnictví témat. ESG není oddělení ani projekt – je to součást řízení podniku.</p>
+        </div>
+        <div class="card">
+          <h3>Kontrola</h3>
+          <p class="small">Připravenost na audit, kontrolu partnera nebo banky. Bez přehnaného reportingu, s důrazem na ověřitelnost.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -115,10 +228,38 @@
         </div>
       </section>
 
-      <section id="kontakt">
-        <h2>Kontakt</h2>
-        <p class="small">Kontaktní údaje, případně institucionální ukotvení projektu.</p>
+      <section id="o-nas">
+        <h2>O nás</h2>
+        <p>
+          ESGbox vznikl ze spolupráce dvou odborníků, kteří propojují environmentální a ekonomické myšlení s reálnou firemní praxí. Projekt nestojí na agenturním modelu ani na akademickém odstupu, ale na práci s konkrétními omezeními a rozhodnutími malých a středních podniků.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <strong>Martin Žirovnický</strong><br />
+            <span class="small">Ekologie · environmentální řízení · vzdělávání</span>
+            <p class="small">
+              Absolvent ekologie a evoluční biologie na Univerzitě Karlově. Má dlouhodobou zkušenost s vedením účetnictví pro malé firmy a působí jako pedagog na obchodní akademii se zaměřením na ESG.
+              Do ESGboxu přináší environmentální perspektivu, vědeckou přesnost a schopnost převádět komplexní požadavky do srozumitelné a aplikovatelné podoby.
+            </p>
+          </div>
+
+          <div class="card">
+            <strong>Lukáš Lorenz</strong><br />
+            <span class="small">Ekonomie · management · governance</span>
+            <p class="small">
+              Absolvent ekonomiky a managementu na ČVUT. Působil v projektovém managementu ve stavebnictví, v současnosti se věnuje řízení logistiky ve společnosti Škoda Auto.
+              Do ESGboxu přináší manažerský pohled na transparentnost, řízení procesů, governance a společenský dopad podnikání.
+            </p>
+          </div>
+        </div>
+
+        <p class="small">
+          Cílem ESGboxu je proměnit ESG z vágní zkratky v praktický nástroj řízení rizik a odpovědností v každodenním fungování firem.
+        </p>
       </section>
+
+      <section id="kontakt">
     </div>
   </main>
 
@@ -127,3 +268,4 @@
   </footer>
 </body>
 </html>
+
