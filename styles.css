@@ -24,8 +24,10 @@ body {
     Roboto, Ubuntu, sans-serif;
   background: var(--bg-main);
   color: var(--text-main);
-  line-height: 1.7;
+  line-height: 1.75;
+  font-size: 1.05rem;
 }
+
 
 /* =========================
    POZADÍ + ORANŽOVÝ ODLESK
@@ -265,4 +267,5 @@ a:hover {
     bottom: -4px;
   }
 }
+
 
