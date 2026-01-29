@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     SCROLL-IN ANIMACE SEKCE A KARET
+     SCROLL-IN ANIMACE
   ========================= */
   const revealElements = document.querySelectorAll(".reveal");
 
@@ -14,42 +14,36 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     },
-    {
-      threshold: 0.15
-    }
+    { threshold: 0.15 }
   );
 
   revealElements.forEach(el => revealObserver.observe(el));
 
 
   /* =========================
-     AKTIVNÍ POLOŽKA MENU PODLE SCROLLU
+     AKTIVNÍ MENU PODLE SCROLLU
   ========================= */
-  const sections = document.querySelectorAll("section[id]");
+  const sections = document.querySelectorAll("section[id]:not(#hero)");
   const navLinks = document.querySelectorAll(".main-nav a");
 
   const navObserver = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const currentId = entry.target.getAttribute("id");
+          const id = entry.target.getAttribute("id");
 
           navLinks.forEach(link => {
             link.classList.toggle(
               "is-active",
-              link.getAttribute("href") === `#${currentId}`
+              link.getAttribute("href") === `#${id}`
             );
           });
         }
       });
     },
     {
-      /* 
-        Aktivní sekce je ta, která je přibližně
-        uprostřed viewportu – kultivované chování,
-        žádné blikání.
-      */
-      rootMargin: "-50% 0px -50% 0px"
+      /* kompenzace fixního headeru */
+      rootMargin: "-40% 0px -40% 0px"
     }
   );
 
