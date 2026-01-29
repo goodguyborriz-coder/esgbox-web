@@ -44,6 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     },
     {
+      /* 
+        Aktivní sekce je ta, která je přibližně
+        uprostřed viewportu – kultivované chování,
+        žádné blikání.
+      */
       rootMargin: "-50% 0px -50% 0px"
     }
   );
