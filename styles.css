@@ -33,7 +33,7 @@ body {
 }
 
 /* =========================
-   ORANŽOVÝ ODLESK – ANIMACE
+   ORANŽOVÝ ODLESK – POZADÍ
 ========================= */
 
 body::before {
@@ -57,15 +57,9 @@ body::before {
 }
 
 @keyframes glowMove {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-45px, 30px);
-  }
-  100% {
-    transform: translate(35px, -40px);
-  }
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-45px, 30px); }
+  100% { transform: translate(35px, -40px); }
 }
 
 /* =========================
@@ -136,25 +130,22 @@ nav a.active::after {
 }
 
 /* =========================
-   SEKCE – FULL WIDTH
+   SEKCE – SPRÁVNÝ LAYOUT
 ========================= */
 
 section {
   min-height: 100vh;
   padding: 9rem 6vw 7rem;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
 }
 
-/* wrapper, pokud existuje */
+/* volitelný wrapper (pokud existuje v HTML) */
 .section-content {
   width: 100%;
   max-width: 1600px;
 }
 
 /* =========================
-   TYPOGRAFIE – BEZPEČNÁ
+   TYPOGRAFIE – ROBUSTNÍ
 ========================= */
 
 section h1,
