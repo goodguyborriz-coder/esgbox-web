@@ -1,271 +1,146 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ESG Projekt – pracovní verze</title>
-  <meta name="description" content="Základní kostra webu projektu zaměřeného na ESG." />
-  <style>
-    /* =========================
-       TYPOGRAFIE – ESGbox
-       ========================= */
-
-    /* Open‑source fonty */
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
-
-    :root {
-      /* ESGbox – box / industriální identita */
-      --bg: #0b0f14;          /* temná aréna */
-      --fg: #e6e6e6;          /* hlavní text */
-      --muted: #9aa4b2;       /* sekundární text */
-      --accent: #f97316;      /* industriální oranžová */
-      --accent-2: #0ea5a5;    /* technická tyrkysová */
-      --card: #111827;        /* krabice / box */
-      --border: #1f2937;
-      --maxw: 1100px;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
-      background: linear-gradient(180deg, #020617, #020617 40%, #020617);
-      color: var(--fg);
-      line-height: 1.65;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-    }
-
-    /* =========================
-       ZÁKLADNÍ TEXT
-       ========================= */
-
-    p {
-      max-width: 70ch; /* kontrola délky řádku */
-      color: var(--fg);
-    }
-
-    .small {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    /* =========================
-       NADPISY – pevné, technické
-       ========================= */
-
-    h1, h2, h3 {
-      font-family: 'IBM Plex Sans', system-ui, sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      line-height: 1.25;
-    }
-
-    h1 {
-      font-size: clamp(1.9rem, 3vw, 2.6rem);
-      margin: 0 0 1rem 0;
-    }
-
-    h2 {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      border-left: 6px solid var(--accent);
-      padding-left: 0.75rem;
-    }
-
-    /* =========================
-       ROZVRŽENÍ
-       ========================= */
-
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    header {
-      border-bottom: 1px solid var(--border);
-      background: rgba(2,6,23,.85);
-      backdrop-filter: blur(6px);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .wrap {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 1.25rem;
-    }
-
-    nav {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-    }
-
-    .menu a {
-      margin-left: 1rem;
-      color: var(--fg);
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .hero {
-      padding: 3.5rem 1rem 4rem;
-      background: radial-gradient(1200px 400px at 50% -10%, rgba(249,115,22,.18), transparent 45%);
-    }
-
-    main { padding: 2.5rem 1rem; }
-
-    section { margin-bottom: 3.5rem; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.25rem;
-      font-size: 0.95rem;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESGbox – ESG jako nástroj řízení rizik</title>
+  <meta name="description" content="ESGbox je ryze česká odborná platforma, která převádí ESG z PR a reportingu do praktického řízení rizik a odpovědností v malých a středních podnicích.">
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <header>
-    <div class="wrap">
-      <nav>
-        <div class="brand">ESGbox</div>
-        <div class="menu">
-          <a href="#o-projektu">O projektu</a>
-          <a href="#metodika">Metodika</a>
-          <a href="#vystupy">Výstupy</a>
-          <a href="#kontakt">Kontakt</a>
-        </div>
-      </nav>
-    </div>
+
+  <!-- HLAVIČKA -->
+  <header class="site-header">
+    <div class="logo">ESGBOX</div>
+    <nav class="main-nav">
+      <a href="#o-nas">O nás</a>
+      <a href="#pilire">Pilíře</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
   </header>
 
-  <section class="hero">
-    <div class="wrap">
-      <h1>ESG není příběh.<br />Je to systém řízení.</h1>
-      <p>
-        ESGbox dává malým a středním podnikům pevný rámec pro řízení environmentálních,
-        sociálních a regulatorních rizik – bez moralizování, bez PR, bez zbytečné administrativy.
-      </p>
-      <p class="small">
-        Co zůstává v boxu: to podstatné. Co zůstává venku: chaos, nejasnost a ESG divadlo.
-      </p>
+  <main>
 
-      <div class="grid" style="margin-top:2.25rem">
-        <div class="card">
-          <h3>Rizika</h3>
-          <p class="small">Identifikace a prioritizace environmentálních, sociálních a regulatorních rizik dříve, než se projeví v nákladech, sankcích nebo ztrátě zakázek.</p>
-        </div>
-        <div class="card">
-          <h3>Odpovědnosti</h3>
-          <p class="small">Jasné role, procesy a vlastnictví témat. ESG není oddělení ani projekt – je to součást řízení podniku.</p>
-        </div>
-        <div class="card">
-          <h3>Kontrola</h3>
-          <p class="small">Připravenost na audit, kontrolu partnera nebo banky. Bez přehnaného reportingu, s důrazem na ověřitelnost.</p>
+    <!-- HERO SEKCE -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>ESG není příběh.<br>Je to systém řízení.</h1>
+        <p>
+          ESGbox dává malým a středním podnikům pevný rámec pro řízení
+          environmentálních, sociálních a regulatorních rizik – bez
+          moralizování, bez PR, bez zbytečné administrativy.
+        </p>
+        <p class="small">
+          Co zůstává v boxu: to podstatné. Co zůstává venku: chaos,
+          nejasnost a ESG divadlo.
+        </p>
+      </div>
+    </section>
+
+    <!-- PILÍŘE -->
+    <section id="pilire">
+      <div class="wrap">
+        <div class="grid">
+
+          <div class="card">
+            <h3>Rizika</h3>
+            <p class="small">
+              Identifikace a prioritizace environmentálních, sociálních
+              a regulatorních rizik dříve, než se projeví v nákladech,
+              sankcích nebo ztrátě zakázek.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Odpovědnosti</h3>
+            <p class="small">
+              Jasné role, procesy a vlastnictví témat. ESG není oddělení
+              ani projekt – je to součást řízení podniku.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Kontrola</h3>
+            <p class="small">
+              Připravenost na audit, kontrolu partnera nebo banky.
+              Bez přehnaného reportingu, s důrazem na ověřitelnost.
+            </p>
+          </div>
+
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <main>
-    <div class="wrap">
-      <section id="o-projektu">
-        <h2>Proč ESGbox existuje</h2>
-        <p>ESGbox vznikl z jednoduchého pozorování: malé a střední podniky nejsou problémem ESG, ale jeho obětí. Ne kvůli neochotě, ale kvůli chaosu, nejasným pravidlům a jazyku, který nepatří do řízení firmy.</p>
-        <p>Naším cílem není přesvědčovat ani moralizovat. ESGbox má podnikatele zbavit zbytečné zátěže tím, že nejdůležitější prvky ESG přehledně uzavře do jednoho funkčního rámce.</p>
-      </section>
-
-      <section id="metodika">
-        <h2>Jak za vás stojíme v ringu</h2>
-        <div class="grid">
-          <div class="card">
-            <strong>Krytí rizik</strong><br />
-            Identifikujeme regulatorní, provozní a reputační rizika dříve, než přerostou v sankce, ztráty nebo krizové situace.
-          </div>
-          <div class="card">
-            <strong>Pevný postoj</strong><br />
-            Překládáme požadavky ESG do jazyka procesů, odpovědností a rozhodování, kterému management skutečně rozumí.
-          </div>
-          <div class="card">
-            <strong>Úder na slabá místa</strong><br />
-            Zaměřujeme se jen na to, co je podstatné. Bez zbytečných reportů, bez formálních gest, bez ESG divadla.
-          </div>
-        </div>
-      </section>
-
-      <section id="vystupy">
-        <h2>S čím odcházíte z arény</h2>
-        <div class="grid">
-          <div class="card">Jasná struktura odpovědností a procesů</div>
-          <div class="card">Podklady připravené pro kontrolu, audit nebo partnera</div>
-          <div class="card">ESG řešené jako součást řízení, ne jako vedlejší projekt</div>
-        </div>
-      </section>
-
-      <section id="o-nas">
+    <!-- O NÁS -->
+    <section id="o-nas">
+      <div class="wrap">
         <h2>O nás</h2>
+
         <p>
-          ESGbox vznikl ze spolupráce dvou odborníků, kteří propojují environmentální a ekonomické myšlení s reálnou firemní praxí. Projekt nestojí na agenturním modelu ani na akademickém odstupu, ale na práci s konkrétními omezeními a rozhodnutími malých a středních podniků.
+          ESGbox vznikl ze spolupráce dvou odborníků, kteří propojují
+          environmentální a ekonomické myšlení s reálnou firemní praxí.
+          Projekt nestojí na agenturním modelu ani na akademickém odstupu,
+          ale na práci s konkrétními omezeními a rozhodnutími malých
+          a středních podniků.
         </p>
 
         <div class="grid">
+
           <div class="card">
-            <strong>Martin Žirovnický</strong><br />
+            <strong>Martin Žirovnický</strong><br>
             <span class="small">Ekologie · environmentální řízení · vzdělávání</span>
             <p class="small">
-              Absolvent ekologie a evoluční biologie na Univerzitě Karlově. Má dlouhodobou zkušenost s vedením účetnictví pro malé firmy a působí jako pedagog na obchodní akademii se zaměřením na ESG.
-              Do ESGboxu přináší environmentální perspektivu, vědeckou přesnost a schopnost převádět komplexní požadavky do srozumitelné a aplikovatelné podoby.
+              Absolvent ekologie a evoluční biologie na Univerzitě Karlově.
+              Má dlouhodobou zkušenost s vedením účetnictví pro malé firmy
+              a působí jako pedagog na obchodní akademii se zaměřením na ESG.
+              Do ESGboxu přináší environmentální perspektivu, vědeckou
+              přesnost a schopnost převádět komplexní požadavky do
+              srozumitelné a aplikovatelné podoby.
             </p>
           </div>
 
           <div class="card">
-            <strong>Lukáš Lorenz</strong><br />
+            <strong>Lukáš Lorenz</strong><br>
             <span class="small">Ekonomie · management · governance</span>
             <p class="small">
-              Absolvent ekonomiky a managementu na ČVUT. Působil v projektovém managementu ve stavebnictví, v současnosti se věnuje řízení logistiky ve společnosti Škoda Auto.
-              Do ESGboxu přináší manažerský pohled na transparentnost, řízení procesů, governance a společenský dopad podnikání.
+              Absolvent ekonomiky a managementu na ČVUT. Působil
+              v projektovém managementu ve stavebnictví, v současnosti
+              se věnuje řízení logistiky ve společnosti Škoda Auto.
+              Do ESGboxu přináší manažerský pohled na transparentnost,
+              řízení procesů, governance a společenský dopad podnikání.
             </p>
           </div>
+
         </div>
 
         <p class="small">
-          Cílem ESGboxu je proměnit ESG z vágní zkratky v praktický nástroj řízení rizik a odpovědností v každodenním fungování firem.
+          Cílem ESGboxu je proměnit ESG z vágní zkratky v praktický nástroj
+          řízení rizik a odpovědností v každodenním fungování firem.
         </p>
-      </section>
+      </div>
+    </section>
 
-      <section id="kontakt">
-    </div>
+    <!-- KONTAKT (zatím placeholder) -->
+    <section id="kontakt">
+      <div class="wrap">
+        <h2>Kontakt</h2>
+        <p class="small">
+          Obsah této sekce bude doplněn v další fázi projektu.
+        </p>
+      </div>
+    </section>
+
   </main>
 
+  <!-- PATIČKA -->
   <footer>
-    <div class="wrap small">© 2026 – pracovní verze webu ESG projektu</div>
+    <div class="wrap">
+      <p class="small">
+        © 2026 ESGbox · Odborná platforma pro řízení ESG v praxi
+      </p>
+    </div>
   </footer>
+
 </body>
 </html>
-
