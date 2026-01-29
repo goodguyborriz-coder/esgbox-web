@@ -98,16 +98,24 @@ section h2 {
 /* =========================
    HERO
 ========================= */
-.hero {
-  position: relative;
-  overflow: hidden;
-  color: #ffffff;
-  background: linear-gradient(
-    120deg,
-    #1a1d24,
-    #12141a,
-    #1a1d24
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(
+    circle at 35% 45%,
+    rgba(242, 140, 40, 0.55),
+    rgba(242, 140, 40, 0.25) 35%,
+    rgba(242, 140, 40, 0.08) 55%,
+    transparent 70%
   );
+  filter: blur(110px);
+  opacity: 1;
+  animation: glowMove 12s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+;
   animation: heroGradient 18s ease infinite;
 }
 
@@ -216,3 +224,4 @@ section h2 {
     gap: 1.2rem;
   }
 }
+
