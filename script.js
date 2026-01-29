@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /* =========================
-     SCROLL-IN ANIMACE
+     SCROLL-IN ANIMACE SEKCI
   ========================= */
-  const revealElements = document.querySelectorAll(".reveal");
+
+  const reveals = document.querySelectorAll(".reveal");
 
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
@@ -14,39 +14,49 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     },
-    { threshold: 0.15 }
-  );
-
-  revealElements.forEach(el => revealObserver.observe(el));
-
-
-  /* =========================
-     AKTIVNÍ MENU PODLE SCROLLU
-  ========================= */
-  const sections = document.querySelectorAll("section[id]:not(#hero)");
-  const navLinks = document.querySelectorAll(".main-nav a");
-
-  const navObserver = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute("id");
-
-          navLinks.forEach(link => {
-            link.classList.toggle(
-              "is-active",
-              link.getAttribute("href") === `#${id}`
-            );
-          });
-        }
-      });
-    },
     {
-      /* kompenzace fixního headeru */
-      rootMargin: "-40% 0px -40% 0px"
+      threshold: 0.15
     }
   );
 
-  sections.forEach(section => navObserver.observe(section));
+  reveals.forEach(section => {
+    revealObserver.observe(section);
+  });
 
+  /* 🔑 KRITICKÁ OPRAVA:
+     odhalíme sekce, které jsou už při loadu ve viewportu */
+  reveals.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) {
+      section.classList.add("is-visible");
+    }
+  });
+
+  /* =========================
+     AKTIVNÍ POLOŽKA MENU
+  ========================= */
+
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".main-nav a");
+
+  const activateMenu = () => {
+    let current = "";
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove("active", "is-active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("is-active");
+      }
+    });
+  };
+
+  window.addEventListener("scroll", activateMenu);
+  activateMenu(); // i při loadu
 });
