@@ -24,6 +24,7 @@ html {
 
 body {
   margin: 0;
+  padding-top: 96px; /* DŮLEŽITÉ – kvůli fixed headeru */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Ubuntu, sans-serif;
   background: var(--bg-main);
@@ -31,6 +32,7 @@ body {
   line-height: 1.8;
   font-size: 1.15rem;
 }
+
 
 /* =========================
    ORANŽOVÝ ODLESK – POZADÍ
@@ -261,3 +263,4 @@ a:hover {
   opacity: 1;
   transform: translateY(0);
 }
+
