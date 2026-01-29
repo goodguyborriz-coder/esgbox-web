@@ -1,5 +1,5 @@
 /* =========================
-   ZÁKLADNÍ PROMĚNNÉ
+   PROMĚNNÉ
 ========================= */
 
 :root {
@@ -11,7 +11,7 @@
 }
 
 /* =========================
-   RESET A ZÁKLAD
+   RESET + ZÁKLAD
 ========================= */
 
 * {
@@ -29,11 +29,11 @@ body {
   background: var(--bg-main);
   color: var(--text-main);
   line-height: 1.8;
-  font-size: 1.15rem; /* + cca 12 % */
+  font-size: 1.15rem;
 }
 
 /* =========================
-   ORANŽOVÝ ODLESK POZADÍ
+   ORANŽOVÝ ODLESK – ANIMACE
 ========================= */
 
 body::before {
@@ -113,7 +113,7 @@ nav a.active::after {
 }
 
 /* =========================
-   MOBILNÍ HEADER
+   MOBILNÍ MENU
 ========================= */
 
 @media (max-width: 720px) {
@@ -136,7 +136,7 @@ nav a.active::after {
 }
 
 /* =========================
-   SEKCE – CELÁ ŠÍŘKA
+   SEKCE – FULL WIDTH
 ========================= */
 
 section {
@@ -147,27 +147,26 @@ section {
   align-items: flex-start;
 }
 
-/* hlavní obsahový wrapper */
+/* wrapper, pokud existuje */
 .section-content {
   width: 100%;
   max-width: 1600px;
 }
 
-/* texty – omezená šířka kvůli čitelnosti */
-.section-content h1,
-.section-content h2,
-.section-content p {
+/* =========================
+   TYPOGRAFIE – BEZPEČNÁ
+========================= */
+
+section h1,
+section h2,
+section p {
   max-width: 900px;
 }
-
-/* =========================
-   TYPOGRAFIE
-========================= */
 
 h1 {
   font-size: clamp(2.9rem, 5.8vw, 4.6rem);
   line-height: 1.15;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.6rem;
 }
 
 h2 {
