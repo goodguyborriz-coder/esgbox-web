@@ -1,241 +1,234 @@
 /* =========================
-   RESET A ZÁKLAD
+   ZÁKLADNÍ NASTAVENÍ
 ========================= */
+
+:root {
+  --bg-main: #0b0f14;
+  --bg-card: #121820;
+  --text-main: #e6e6e6;
+  --text-muted: #a8b0bb;
+  --accent: #ff8a2b;
+}
+
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
-  background: #0f1115;
-  color: #eaeaea;
-  line-height: 1.6;
-  padding-top: 64px; /* kompenzace fixního headeru */
+    Roboto, Ubuntu, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.7;
 }
 
 /* =========================
-   HLAVIČKA A NAVIGACE
+   POZADÍ + ORANŽOVÝ ODLESK
 ========================= */
-.site-header {
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -10%;
+  background:
+    radial-gradient(
+      900px 500px at 20% 25%,
+      rgba(255, 138, 43, 0.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 400px at 80% 65%,
+      rgba(255, 138, 43, 0.14),
+      transparent 65%
+    );
+  z-index: -1;
+  pointer-events: none;
+  animation: glowMove 24s ease-in-out infinite alternate;
+}
+
+@keyframes glowMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-40px, 25px);
+  }
+  100% {
+    transform: translate(30px, -35px);
+  }
+}
+
+/* =========================
+   HLAVIČKA / MENU
+========================= */
+
+header {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 64px;
-  background: rgba(15, 17, 21, 0.85);
-  backdrop-filter: blur(10px);
+  padding: 1.5rem 4vw;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  align-items: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(11, 15, 20, 0.9),
+    rgba(11, 15, 20, 0.6)
+  );
+  backdrop-filter: blur(6px);
   z-index: 100;
 }
 
-.logo {
-  font-weight: 600;
+header .logo {
+  font-weight: 700;
   letter-spacing: 0.08em;
 }
 
-/* --- menu --- */
-.main-nav {
-  display: flex;
-  gap: 2rem;
-}
-
-.main-nav a {
-  position: relative;
-  color: #cfcfcf;
+nav a {
+  color: var(--text-main);
+  margin-left: 2rem;
   text-decoration: none;
-  font-size: 0.9rem;
+  position: relative;
 }
 
-.main-nav a::after {
+nav a.active::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: -6px;
   width: 100%;
-  height: 1px;
-  background: #f28c28;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-
-.main-nav a:hover::after,
-.main-nav a.is-active::after {
-  transform: scaleX(1);
-}
-
-.main-nav a.is-active {
-  color: #ffffff;
+  height: 2px;
+  background: var(--accent);
 }
 
 /* =========================
-   SEKCE – VARIANTA A (FULL VIEWPORT)
+   SEKCE – ROZVRŽENÍ
 ========================= */
+
 section {
-  min-height: calc(100vh - 64px);
+  min-height: 100vh;
+  padding: 8rem 4vw 6rem;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  padding: 4rem 2rem;
+  align-items: flex-start;
 }
 
-/* omezíme šířku obsahu, ať text „nedýchá do nekonečna“ */
-section > * {
-  max-width: 1100px;
+.section-content {
+  width: 100%;
+  max-width: 1400px;
 }
 
-section h2 {
-  margin-bottom: 2.5rem;
-  font-weight: 500;
+.section-content h2,
+.section-content p {
+  max-width: 780px;
+}
+
+h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  color: var(--text-muted);
 }
 
 /* =========================
    HERO
 ========================= */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: -30%;
-  background: radial-gradient(
-    circle at 35% 45%,
-    rgba(242, 140, 40, 0.55),
-    rgba(242, 140, 40, 0.25) 35%,
-    rgba(242, 140, 40, 0.08) 55%,
-    transparent 70%
-  );
-  filter: blur(110px);
-  opacity: 1;
-  animation: glowMove 12s ease-in-out infinite;
-  z-index: 1;
-  pointer-events: none;
-}
-;
-  animation: heroGradient 18s ease infinite;
+
+.hero {
+  display: flex;
+  align-items: center;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-}
-
-@keyframes heroGradient {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* --- oranžový odlesk --- */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  background: radial-gradient(
-    circle at 35% 45%,
-    rgba(242, 140, 40, 0.35),
-    rgba(242, 140, 40, 0.15) 35%,
-    transparent 65%
-  );
-  filter: blur(90px);
-  opacity: 1;
-  animation: glowMove 14s ease-in-out infinite;
-  z-index: 1;
-  pointer-events: none;
-}
-
-@keyframes glowMove {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(10%, -8%) scale(1.08); }
-  100% { transform: translate(0, 0) scale(1); }
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.2;
+  max-width: 900px;
 }
 
 /* =========================
-   GRID A KARTY
+   GRID / PILÍŘE
 ========================= */
+
 .grid {
   display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 2rem;
-  border-radius: 6px;
-  transition: transform 0.3s ease, background 0.3s ease;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 138, 43, 0.08),
+    var(--bg-card)
+  );
+  padding: 2.2rem;
+  border-radius: 14px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.4),
-    inset 0 0 0 1px rgba(242, 140, 40, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
-
 
 .card h3 {
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-/* Akcent pilířů – oranžový podpis */
-.card h3::before {
-  content: "";
-  display: block;
-  width: 32px;
-  height: 2px;
-  background: rgba(242, 140, 40, 0.9);
-  margin-bottom: 0.75rem;
-}
-
-.card .small {
-  font-size: 0.9rem;
-  opacity: 0.85;
+  margin-top: 0;
+  color: var(--accent);
 }
 
 /* =========================
-   ODKAZY UVNITŘ KARET
+   ODKAZY
 ========================= */
-.card a {
-  color: inherit;
+
+a {
+  color: var(--accent);
   text-decoration: none;
 }
 
-.card a:hover {
-  color: #f28c28;
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   O NÁS
+========================= */
+
+.person {
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: 14px;
+}
+
+.person h3 {
+  margin-top: 0;
+  color: var(--accent);
 }
 
 /* =========================
    SCROLL-IN ANIMACE
 ========================= */
+
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.reveal.is-visible {
+.reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-  section {
-    padding: 3rem 1.5rem;
-  }
-
-  .main-nav {
-    gap: 1.2rem;
-  }
-}
-
-
