@@ -1,5 +1,5 @@
 /* =========================
-   ZÁKLADNÍ NASTAVENÍ
+   ZÁKLADNÍ PROMĚNNÉ
 ========================= */
 
 :root {
@@ -9,6 +9,10 @@
   --text-muted: #a8b0bb;
   --accent: #ff8a2b;
 }
+
+/* =========================
+   RESET A ZÁKLAD
+========================= */
 
 * {
   box-sizing: border-box;
@@ -24,33 +28,32 @@ body {
     Roboto, Ubuntu, sans-serif;
   background: var(--bg-main);
   color: var(--text-main);
-  line-height: 1.75;
-  font-size: 1.05rem;
+  line-height: 1.8;
+  font-size: 1.15rem; /* + cca 12 % */
 }
 
-
 /* =========================
-   POZADÍ + ORANŽOVÝ ODLESK
+   ORANŽOVÝ ODLESK POZADÍ
 ========================= */
 
 body::before {
   content: "";
   position: fixed;
-  inset: -10%;
+  inset: -12%;
   background:
     radial-gradient(
-      900px 500px at 20% 25%,
+      900px 500px at 18% 22%,
       rgba(255, 138, 43, 0.18),
       transparent 60%
     ),
     radial-gradient(
-      700px 400px at 80% 65%,
-      rgba(255, 138, 43, 0.14),
+      750px 450px at 82% 70%,
+      rgba(255, 138, 43, 0.15),
       transparent 65%
     );
   z-index: -1;
   pointer-events: none;
-  animation: glowMove 24s ease-in-out infinite alternate;
+  animation: glowMove 22s ease-in-out infinite alternate;
 }
 
 @keyframes glowMove {
@@ -58,28 +61,28 @@ body::before {
     transform: translate(0, 0);
   }
   50% {
-    transform: translate(-40px, 25px);
+    transform: translate(-45px, 30px);
   }
   100% {
-    transform: translate(30px, -35px);
+    transform: translate(35px, -40px);
   }
 }
 
 /* =========================
-   HLAVIČKA / MENU
+   HEADER / NAVIGACE
 ========================= */
 
 header {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 1.5rem 4vw;
+  padding: 1.6rem 5vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(
     to bottom,
-    rgba(11, 15, 20, 0.9),
+    rgba(11, 15, 20, 0.92),
     rgba(11, 15, 20, 0.6)
   );
   backdrop-filter: blur(6px);
@@ -88,14 +91,15 @@ header {
 
 header .logo {
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
 }
 
 nav a {
   color: var(--text-main);
-  margin-left: 2rem;
+  margin-left: 2.2rem;
   text-decoration: none;
   position: relative;
+  font-size: 1rem;
 }
 
 nav a.active::after {
@@ -109,34 +113,71 @@ nav a.active::after {
 }
 
 /* =========================
-   SEKCE – ROZVRŽENÍ
+   MOBILNÍ HEADER
+========================= */
+
+@media (max-width: 720px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  nav a {
+    margin-left: 0;
+    font-size: 0.95rem;
+  }
+}
+
+/* =========================
+   SEKCE – CELÁ ŠÍŘKA
 ========================= */
 
 section {
   min-height: 100vh;
-  padding: 8rem 4vw 6rem;
+  padding: 9rem 6vw 7rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
+/* hlavní obsahový wrapper */
 .section-content {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1600px;
 }
 
+/* texty – omezená šířka kvůli čitelnosti */
+.section-content h1,
 .section-content h2,
 .section-content p {
-  max-width: 780px;
+  max-width: 900px;
+}
+
+/* =========================
+   TYPOGRAFIE
+========================= */
+
+h1 {
+  font-size: clamp(2.9rem, 5.8vw, 4.6rem);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
 }
 
 h2 {
-  font-size: 2.4rem;
-  margin-bottom: 1.6rem;
+  font-size: 2.5rem;
+  margin-bottom: 1.7rem;
 }
 
 p {
   color: var(--text-muted);
+  margin-bottom: 1.4rem;
 }
 
 /* =========================
@@ -148,22 +189,16 @@ p {
   align-items: center;
 }
 
-.hero h1 {
-  font-size: clamp(2.7rem, 5.5vw, 4.3rem);
-  line-height: 1.15;
-  max-width: 950px;
-}
-
-
 /* =========================
    GRID / PILÍŘE
 ========================= */
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(280px, 1fr));
-  gap: 2.5rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-top: 3.5rem;
+  width: 100%;
 }
 
 @media (max-width: 900px) {
@@ -175,22 +210,23 @@ p {
 .card {
   background: linear-gradient(
     160deg,
-    rgba(255, 138, 43, 0.08),
+    rgba(255, 138, 43, 0.09),
     var(--bg-card)
   );
-  padding: 2.2rem;
-  border-radius: 14px;
+  padding: 2.6rem;
+  border-radius: 16px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-7px);
+  box-shadow: 0 24px 45px rgba(0, 0, 0, 0.45);
 }
 
 .card h3 {
   margin-top: 0;
   color: var(--accent);
+  font-size: 1.3rem;
 }
 
 /* =========================
@@ -212,8 +248,8 @@ a:hover {
 
 .person {
   background: var(--bg-card);
-  padding: 2rem;
-  border-radius: 14px;
+  padding: 2.4rem;
+  border-radius: 16px;
 }
 
 .person h3 {
@@ -227,7 +263,7 @@ a:hover {
 
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(35px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
@@ -235,39 +271,3 @@ a:hover {
   opacity: 1;
   transform: translateY(0);
 }
-.card:hover {
-  transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.4),
-    inset 0 0 0 1px rgba(242, 140, 40, 0.25);
-}
-/* =========================
-   MOBILNÍ MENU
-========================= */
-
-@media (max-width: 720px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  nav {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  nav a {
-    margin-left: 0;
-    font-size: 0.95rem;
-  }
-
-  nav a.active::after {
-    bottom: -4px;
-  }
-}
-
-
-
