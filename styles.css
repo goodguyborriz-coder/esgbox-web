@@ -291,3 +291,21 @@ p{
   *{ animation: none !important; transition: none !important; }
   .reveal{ opacity: 1; transform: none; }
 }
+/* =========================
+   TYPOGRAFIE – ZAROVNÁNÍ DO BLOKU
+========================= */
+
+/* Dlouhé texty: zarovnání do bloku */
+section p{
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+/* Na mobilech lehce zmírníme, aby nevznikaly mezery */
+@media (max-width: 720px){
+  section p{
+    text-align: left;
+  }
+   
+}
