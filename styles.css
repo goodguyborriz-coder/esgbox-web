@@ -371,5 +371,48 @@ section p{
   background: rgba(0, 0, 0, 0.08);
   margin-top: 3rem;
 }
+.context-note {
+  margin-top: 4rem;
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+
+.context-note details {
+  max-width: 70ch;
+}
+
+.context-note summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  list-style: none;
+}
+
+.context-note summary::marker {
+  display: none;
+}
+
+.context-note summary::after {
+  content: " +";
+  font-weight: 600;
+}
+
+.context-note details[open] summary::after {
+  content: " −";
+}
+
+.context-note p {
+  margin: 0.75rem 0;
+}
+
+.context-note ul {
+  margin: 0.5rem 0 0 1.25rem;
+  padding: 0;
+}
+
+.context-note li {
+  margin-bottom: 0.4rem;
+}
 
 
