@@ -415,4 +415,16 @@ section p{
   margin-bottom: 0.4rem;
 }
 
+p {
+  line-height: 1.65;
+  hyphens: manual;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+section {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
