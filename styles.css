@@ -435,4 +435,16 @@ details details p {
 }
 
 
+/* PILÍŘE – IKONKY */
+.pillar-icon {
+  display: inline-flex;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  color: rgba(255,255,255,0.45);
+}
+
+.pillar-icon svg {
+  width: 20px;
+  height: 20px;
+}
 
