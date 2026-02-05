@@ -357,4 +357,47 @@ details details p {
 }
 
 
+/* =========================================================
+   EDITORIAL FOOTER – SPODNÍ ZNALOSTNÍ BLOK
+========================================================= */
+
+#vychodiska {
+  position: relative;
+  margin-top: 6rem;
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+}
+
+/* jemné oddělení od hlavního obsahu */
+#vychodiska::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255,138,43,0.35),
+    transparent
+  );
+  margin-bottom: 3rem;
+}
+
+/* „jiný prostor“ – klidnější, méně kontrastní */
+#vychodiska .context-note {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.03),
+    rgba(255,255,255,0.01)
+  );
+  border-radius: 20px;
+  padding: 2.8rem 2.6rem;
+}
+
+/* lehké optické zklidnění textu v této části */
+#vychodiska .context-note p,
+#vychodiska .context-note li {
+  opacity: 0.92;
+}
+
 
