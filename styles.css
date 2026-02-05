@@ -164,7 +164,7 @@ p{
   margin: 0 0 1.35rem;
   color: var(--text-muted);
   text-align: justify;
-  hyphens: auto;
+  hyphens: none;
 }
 
 .small{
@@ -303,3 +303,4 @@ p{
     transform:none;
   }
 }
+
