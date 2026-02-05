@@ -304,4 +304,32 @@ p{
   }
 }
 
+/* =========================================================
+   FAQ – podřízené rozklikávací položky
+========================================================= */
+
+/* FAQ jako celek: lehké odsazení doprava */
+details details {
+  margin-left: 1.6rem;
+}
+
+/* Text FAQ – bílý a čitelný */
+details details p {
+  color: #ffffff;
+}
+
+/* Otázky (summary) FAQ */
+details details summary {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+/* Jemné vizuální oddělení */
+details details summary::before {
+  content: "– ";
+  opacity: 0.6;
+}
+
 
