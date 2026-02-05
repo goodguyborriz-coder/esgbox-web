@@ -1,104 +1,112 @@
-/* =========================
-   PROMĚNNÉ
-========================= */
+/* =========================================================
+   1. ROOT PROMĚNNÉ
+========================================================= */
 :root{
   --bg-main:#0b0f14;
   --bg-card:#121820;
+
   --text-main:#e6e6e6;
   --text-muted:#a8b0bb;
+
   --accent:#ff8a2b;
 
-  /* šířky a odsazení pro čitelnost */
-  --content-max: 1400px;          /* „téměř přes celou stránku“, ale stále čitelné */
+  --content-max: 1400px;
   --content-pad: clamp(18px, 5vw, 64px);
-  --header-h: 84px;               /* robustní rezerva pro fixed header */
+
+  --header-h: 84px;
 }
 
-/* =========================
-   RESET + ZÁKLAD
-========================= */
-*{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
+/* =========================================================
+   2. RESET + ZÁKLAD
+========================================================= */
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
 body{
   margin:0;
-  padding-top: var(--header-h); /* kvůli fixed headeru */
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Ubuntu, sans-serif;
+  padding-top: var(--header-h);
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Ubuntu, sans-serif;
+
   background: var(--bg-main);
   color: var(--text-main);
-  line-height: 1.85;
-  font-size: 1.26rem; /* ~10% navýšení oproti 1.15rem */
+  font-size: 1.26rem;
+  line-height: 1.7;
 }
 
-/* Globálně: žádné podtržené odkazy (podtržení řešíme „designově“, ne defaultem) */
+/* odkazy */
 a{
   color: inherit;
   text-decoration: none;
-  text-underline-offset: 0.18em;
 }
 a:hover{ color: var(--accent); }
 
-/* =========================
-   ORANŽOVÝ ODLESK – POZADÍ
-========================= */
+/* =========================================================
+   3. GLOBÁLNÍ POZADÍ – ORANŽOVÝ ODLESK
+========================================================= */
 body::before{
   content:"";
   position: fixed;
   inset: -12%;
   background:
-    radial-gradient(900px 520px at 18% 22%, rgba(255, 138, 43, 0.22), transparent 62%),
-    radial-gradient(760px 460px at 82% 70%, rgba(255, 138, 43, 0.18), transparent 66%);
+    radial-gradient(900px 520px at 18% 22%, rgba(255,138,43,0.22), transparent 62%),
+    radial-gradient(760px 460px at 82% 70%, rgba(255,138,43,0.18), transparent 66%);
   z-index: -1;
   pointer-events: none;
-  filter: blur(0px);
-  animation: glowMove 18s ease-in-out infinite alternate; /* svižnější */
+  animation: glowMove 18s ease-in-out infinite alternate;
 }
 
 @keyframes glowMove{
-  0%   { transform: translate(0, 0); }
-  50%  { transform: translate(-40px, 26px); }
-  100% { transform: translate(34px, -36px); }
+  from{ transform: translate(0,0); }
+  to{ transform: translate(32px,-28px); }
 }
 
-/* =========================
-   HLAVIČKA / NAVIGACE (podle vašeho HTML)
-========================= */
+/* =========================================================
+   4. HLAVIČKA + NAVIGACE
+========================================================= */
 .site-header{
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top:0; left:0;
+  width:100%;
   min-height: var(--header-h);
+
   padding: 1.25rem var(--content-pad);
-  display: flex;
+  display:flex;
   justify-content: space-between;
   align-items: center;
+
   background: linear-gradient(
     to bottom,
-    rgba(11, 15, 20, 0.92),
-    rgba(11, 15, 20, 0.58)
+    rgba(11,15,20,0.92),
+    rgba(11,15,20,0.58)
   );
+
   backdrop-filter: blur(8px);
   z-index: 1000;
 }
 
-.site-header .logo{
+.logo{
   font-weight: 750;
   letter-spacing: 0.10em;
 }
 
 .main-nav{
   display:flex;
-  flex-wrap: wrap;
   gap: 1.2rem;
-  align-items: center;
 }
 
 .main-nav a{
   position: relative;
   font-size: 1rem;
-  color: var(--text-main);
-  opacity: 0.92;
+  opacity: 0.9;
 }
 
 .main-nav a::after{
@@ -111,79 +119,62 @@ body::before{
   background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-  opacity: 0.95;
+  transition: transform .25s ease;
 }
 
-/* hover underline */
-.main-nav a:hover::after{ transform: scaleX(1); }
-
-/* aktivní sekce: podporujeme oba názvy tříd (active i is-active) */
-.main-nav a.is-active,
-.main-nav a.active{
-  opacity: 1;
-  color: #fff;
-}
-.main-nav a.is-active::after,
+.main-nav a:hover::after,
 .main-nav a.active::after{
   transform: scaleX(1);
 }
 
-/* mobilní stabilizace (aby se menu nedeformovalo) */
-@media (max-width: 720px){
-  :root{ --header-h: 108px; } /* vyšší, protože nav jde do dvou řádků */
-  .site-header{
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.9rem;
-  }
-  .main-nav{
-    width: 100%;
-    justify-content: space-between;
-    gap: 0.9rem;
-  }
-  .main-nav a{ font-size: 0.98rem; }
-}
-
-/* =========================
-   ROZVRŽENÍ SEKCE – „přes stránku“ s čitelnými okraji
-========================= */
-main{ width: 100%; }
+/* =========================================================
+   5. SEKCE – JEDNOTNÁ FILOZOFIE
+========================================================= */
+main{ width:100%; }
 
 section{
   min-height: 100vh;
-  padding: calc(var(--header-h) + 2.2rem) var(--content-pad) 7rem;
+  padding: calc(var(--header-h) + 2.5rem) var(--content-pad) 7rem;
 }
 
-/* Základní šířka obsahu uvnitř sekcí (h2, p, atd.) */
-section > h1,
-section > h2,
-section > p{
+/* vnitřní kontejner obsahu */
+.section-inner{
   max-width: var(--content-max);
 }
 
-/* „negativní prostor“ mezi bloky: řešíme v typografii */
+/* =========================================================
+   6. TYPOGRAFIE
+========================================================= */
 h1{
-  font-size: clamp(3.1rem, 5.9vw, 4.8rem);
+  font-size: clamp(3.1rem, 6vw, 4.8rem);
   line-height: 1.12;
-  margin: 0 0 1.6rem 0;
-  letter-spacing: -0.01em;
+  margin: 0 0 1.6rem;
 }
 
 h2{
   font-size: clamp(2.1rem, 3.2vw, 2.7rem);
-  margin: 0 0 1.9rem 0;
-  letter-spacing: -0.01em;
+  margin: 0 0 1.9rem;
+}
+
+h3{
+  margin: 0 0 1rem;
 }
 
 p{
+  margin: 0 0 1.35rem;
   color: var(--text-muted);
-  margin: 0 0 1.35rem 0;
+  text-align: justify;
+  hyphens: auto;
 }
 
-/* =========================
-   HERO
-========================= */
+.small{
+  font-size: 1.05rem;
+  opacity: 0.9;
+}
+
+/* =========================================================
+   7. HERO
+========================================================= */
 .hero{
   display:flex;
   align-items: center;
@@ -191,39 +182,30 @@ p{
   overflow: hidden;
 }
 
-/* jemný „hero“ gradient navrch (nechceme plochou tmu) */
 .hero::after{
   content:"";
   position:absolute;
   inset:-20%;
   background:
-    radial-gradient(900px 560px at 30% 40%, rgba(255, 138, 43, 0.12), transparent 62%),
-    radial-gradient(900px 700px at 75% 30%, rgba(255, 255, 255, 0.04), transparent 65%);
+    radial-gradient(900px 560px at 30% 40%, rgba(255,138,43,0.12), transparent 62%),
+    radial-gradient(900px 700px at 75% 30%, rgba(255,255,255,0.04), transparent 65%);
   filter: blur(70px);
-  pointer-events:none;
-  z-index: 0;
-  animation: heroGlow 14s ease-in-out infinite alternate;
-}
-
-@keyframes heroGlow{
-  0%{ transform: translate(0,0); }
-  100%{ transform: translate(24px,-18px); }
+  z-index:0;
 }
 
 .hero-content{
   position: relative;
-  z-index: 1;
+  z-index:1;
   max-width: var(--content-max);
 }
 
-/* =========================
-   GRID / PILÍŘE + KARTY
-========================= */
+/* =========================================================
+   8. GRID + KARTY
+========================================================= */
 .grid{
-  width: 100%;
   max-width: var(--content-max);
   display: grid;
-  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  grid-template-columns: repeat(3, minmax(260px,1fr));
   gap: 2.6rem;
   margin-top: 3rem;
 }
@@ -235,195 +217,89 @@ p{
 .card{
   background: linear-gradient(
     160deg,
-    rgba(255, 138, 43, 0.10),
-    rgba(18, 24, 32, 0.92)
+    rgba(255,138,43,0.10),
+    rgba(18,24,32,0.92)
   );
-  border: 1px solid rgba(255, 138, 43, 0.18);
+  border: 1px solid rgba(255,138,43,0.18);
   padding: 2.7rem;
   border-radius: 18px;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+
+  transition: transform .22s ease,
+              box-shadow .22s ease,
+              border-color .22s ease;
 }
 
 .card:hover{
   transform: translateY(-7px);
   box-shadow: 0 24px 46px rgba(0,0,0,0.46);
-  border-color: rgba(255, 138, 43, 0.30);
+  border-color: rgba(255,138,43,0.30);
 }
 
 .card h3{
-  margin: 0 0 1rem 0;
   color: var(--accent);
   font-size: 1.38rem;
 }
 
-.small{
-  font-size: 1.04rem;
-  opacity: 0.9;
-}
-
-/* ODKAZY OBALUJÍCÍ CELÉ KARTY (O nás): žádné podtržení, žádné rozbití typografie */
+/* celé karty jako odkazy */
 .card-link{
-  display: block;
+  display:block;
   color: inherit;
-  text-decoration: none;
 }
-.card-link:hover{ color: inherit; } /* hover barvíme až uvnitř karty */
-.card-link:hover .card h3{ color: #ffd2a8; } /* decentní „akční“ reakce */
+.card-link:hover .card h3{
+  color: #ffd2a8;
+}
 
-/* =========================
-   SCROLL-IN ANIMACE
-   (podporujeme oba názvy tříd: .visible i .is-visible)
-========================= */
+/* =========================================================
+   9. SCROLL-IN ANIMACE
+========================================================= */
 .reveal{
   opacity: 0;
-  transform: translateY(34px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(32px);
+  transition: opacity .7s ease, transform .7s ease;
 }
 
-.reveal.is-visible,
-.reveal.visible{
+.reveal.is-visible{
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
-/* Přístupnost: kdo nechce animace, tomu je vypneme */
-@media (prefers-reduced-motion: reduce){
-  *{ animation: none !important; transition: none !important; }
-  .reveal{ opacity: 1; transform: none; }
-}
-/* =========================
-   TYPOGRAFIE – ZAROVNÁNÍ DO BLOKU
-========================= */
-
-/* Dlouhé texty: zarovnání do bloku */
-section p{
-  text-align: justify;
-  text-justify: inter-word;
-  hyphens: auto;
+/* =========================================================
+   10. EDITORIAL / VÝCHODISKA
+========================================================= */
+.references{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
-/* Na mobilech lehce zmírníme, aby nevznikaly mezery */
-@media (max-width: 720px){
-  section p{
-    text-align: left;
-  }
-   
-}
-/* --- Východiska a rámce (editorial reference section) --- */
-
-.references {
-  max-width: 1100px;
-  margin: 8rem auto 4rem auto;
-  padding: 0 2rem;
-}
-
-.references h2 {
-  font-size: 1.1rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  margin-bottom: 1.5rem;
-  color: #111;
-}
-
-.references-intro {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #555;
-  max-width: 800px;
-  margin-bottom: 2rem;
-}
-
-.references-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.references-list li {
+.context-note{
+  max-width: 70ch;
   font-size: 0.9rem;
-  line-height: 1.5;
-  color: #666;
-  margin-bottom: 0.75rem;
-}
-
-.references-list a {
-  color: #111;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 122, 0, 0.35); /* jemná oranžová stopa */
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-.references-list a:hover {
-  color: #000;
-  border-bottom-color: rgba(255, 122, 0, 0.7);
-}
-
-.references-list span {
-  color: #777;
-}
-
-/* jemné oddělení od patičky */
-.references::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.08);
-  margin-top: 3rem;
-}
-.context-note {
-  margin-top: 4rem;
-  font-size: 0.9em;
   opacity: 0.85;
 }
 
-.context-note details {
-  max-width: 70ch;
-}
-
-.context-note summary {
+.context-note summary{
   cursor: pointer;
   color: var(--accent);
   font-weight: 500;
-  margin-bottom: 0.75rem;
-  list-style: none;
 }
 
-.context-note summary::marker {
-  display: none;
-}
-
-.context-note summary::after {
+.context-note summary::after{
   content: " +";
-  font-weight: 600;
 }
-
-.context-note details[open] summary::after {
+.context-note details[open] summary::after{
   content: " −";
 }
 
-.context-note p {
-  margin: 0.75rem 0;
-}
-
-.context-note ul {
-  margin: 0.5rem 0 0 1.25rem;
-  padding: 0;
-}
-
-.context-note li {
-  margin-bottom: 0.4rem;
-}
-
-p {
-  line-height: 1.65;
-  hyphens: manual;
-  text-wrap: pretty;
-  overflow-wrap: break-word;
-}
-
-section {
-  max-width: 680px;
-  margin-left: auto;
-  margin-right: auto;
+/* =========================================================
+   11. PŘÍSTUPNOST
+========================================================= */
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal{
+    opacity:1;
+    transform:none;
+  }
 }
