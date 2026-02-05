@@ -418,3 +418,19 @@ details details p {
 }
 
 
+/* =========================================================
+   ESG BOX – LINE ART
+========================================================= */
+
+.esgbox-lineart {
+  display: flex;
+  justify-content: center;
+  margin: 5rem 0 3rem;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.esgbox-lineart svg {
+  width: 220px;
+  height: auto;
+}
+
