@@ -400,4 +400,21 @@ details details p {
   opacity: 0.92;
 }
 
+/* =========================================================
+   ROZCESTNÍK – HLAVNÍ ROZKLIKÁVACÍ SEKCE VEDLE SEBE
+========================================================= */
+
+@media (min-width: 900px){
+  .context-note {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.4rem 3.2rem;
+  }
+
+  /* zajistíme, že vnitřní FAQ zůstane ve sloupci */
+  .context-note > details {
+    margin-bottom: 0;
+  }
+}
+
 
