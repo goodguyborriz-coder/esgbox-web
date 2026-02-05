@@ -331,5 +331,30 @@ details details summary::before {
   content: "– ";
   opacity: 0.6;
 }
+/* =========================================================
+   ROZBALOVACÍ SEKCE – VERTIKÁLNÍ RYTMUS
+========================================================= */
+
+/* hlavní rozklikávací bloky (Východiska, Jak to děláme, …) */
+.context-note > details {
+  margin-bottom: 1.4rem;
+}
+
+/* větší mezera po otevření (aby se obsah „nadechl“) */
+.context-note > details[open] {
+  margin-bottom: 2.2rem;
+}
+
+/* FAQ položky – jemnější, ale čitelné rozestupy */
+details details {
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+/* obsah FAQ – lehce odsazený od otázky */
+details details p {
+  margin-top: 0.6rem;
+}
+
 
 
