@@ -163,7 +163,7 @@ h3{
 p{
   margin: 0 0 1.35rem;
   color: var(--text-muted);
-  text-align: justify;
+  text-align: left;
   hyphens: none;
 }
 
@@ -303,4 +303,5 @@ p{
     transform:none;
   }
 }
+
 
