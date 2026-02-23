@@ -447,4 +447,20 @@ details details p {
   width: 20px;
   height: 20px;
 }
+.wobble {
+  display: inline-block;
+}
+
+.wobble .ch {
+  display: inline-block;
+  transition: transform 160ms ease;
+  will-change: transform;
+}
+
+/* aktivní jen na zařízeních s hoverem */
+@media (hover: hover) {
+  .wobble.is-hover .ch {
+    transform: translate(var(--dx), var(--dy));
+  }
+}
 
