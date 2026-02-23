@@ -61,36 +61,42 @@ document.addEventListener("DOMContentLoaded", () => {
   activateMenu(); // i při loadu
 });
 (function () {
-  const el = document.querySelector("[data-wobble]");
-  if (!el) return;
+  const targets = document.querySelectorAll("[data-wobble]");
+  if (!targets.length) return;
 
-  const text = el.textContent;
-  el.textContent = "";
+  targets.forEach((el) => {
+    // ochrana proti dvojímu spuštění
+    if (el.dataset.wobbleDone === "1") return;
+    el.dataset.wobbleDone = "1";
 
-  [...text].forEach(ch => {
-    const span = document.createElement("span");
-    span.className = "ch";
-    span.textContent = ch;
-    el.appendChild(span);
-  });
+    const text = el.textContent;
+    el.textContent = "";
 
-  const chars = el.querySelectorAll(".ch");
-
-  const setOffsets = () => {
-    chars.forEach(c => {
-      const dx = (Math.random() * 3 - 1.5).toFixed(2);
-      const dy = (Math.random() * 3 - 1.5).toFixed(2);
-      c.style.setProperty("--dx", dx + "px");
-      c.style.setProperty("--dy", dy + "px");
+    [...text].forEach((ch) => {
+      const span = document.createElement("span");
+      span.className = "ch";
+      span.textContent = ch; // bez mezer, tady je to jen "ESGbox"
+      el.appendChild(span);
     });
-  };
 
-  el.addEventListener("mouseenter", () => {
-    setOffsets();
-    el.classList.add("is-hover");
-  });
+    const chars = el.querySelectorAll(".ch");
 
-  el.addEventListener("mouseleave", () => {
-    el.classList.remove("is-hover");
+    const setOffsets = () => {
+      chars.forEach((c) => {
+        const dx = (Math.random() * 2.4 - 1.2).toFixed(2); // -1.2..+1.2 px
+        const dy = (Math.random() * 2.4 - 1.2).toFixed(2); // -1.2..+1.2 px
+        c.style.setProperty("--dx", dx + "px");
+        c.style.setProperty("--dy", dy + "px");
+      });
+    };
+
+    el.addEventListener("mouseenter", () => {
+      setOffsets();
+      el.classList.add("is-hover");
+    });
+
+    el.addEventListener("mouseleave", () => {
+      el.classList.remove("is-hover");
+    });
   });
 })();
