@@ -495,3 +495,12 @@ details details p {
   opacity: 0.6;
   z-index: 9999;
 }
+
+a[rel~="noopener"]{
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+a[rel~="noopener"]:hover{
+  border-bottom-color: rgba(255,255,255,0.38);
+}
