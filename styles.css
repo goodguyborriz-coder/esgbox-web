@@ -485,3 +485,13 @@ details details p {
   opacity: 0.6;          /* méně výrazné */
   letter-spacing: 6px;   /* mezera mezi vlajkami */
 }
+
+.scroll-progress{
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent);
+  opacity: 0.6;
+  z-index: 9999;
+}
