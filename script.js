@@ -100,3 +100,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 })();
+
+const bar = document.querySelector(".scroll-progress");
+window.addEventListener("scroll", () => {
+  const h = document.documentElement;
+  const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  bar.style.width = scrolled + "%";
+});
