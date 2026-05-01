@@ -1,109 +1,96 @@
-document.addEventListener("DOMContentLoaded", () => {
-  /* =========================
-     SCROLL-IN ANIMACE SEKCI
-  ========================= */
+/**
+ * ESGBOX - Power-Box Interaction Script
+ */
 
-  const reveals = document.querySelectorAll(".reveal");
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. SCROLL REVEAL - Plynulé "vboxování" sekcí při scrollu
+    const revealSections = () => {
+        const observerOptions = {
+            threshold: 0.15, // Sekce se aktivuje, když je z 15 % vidět
+            rootMargin: "0px 0px -50px 0px"
+        };
 
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.15
-    }
-  );
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Jakmile se sekce jednou ukáže, přestaneme ji sledovat
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
 
-  reveals.forEach(section => {
-    revealObserver.observe(section);
-  });
-
-  /* 🔑 KRITICKÁ OPRAVA:
-     odhalíme sekce, které jsou už při loadu ve viewportu */
-  reveals.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.85) {
-      section.classList.add("is-visible");
-    }
-  });
-
-  /* =========================
-     AKTIVNÍ POLOŽKA MENU
-  ========================= */
-
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".main-nav a");
-
-  const activateMenu = () => {
-    let current = "";
-
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      if (window.scrollY >= sectionTop) {
-        current = section.getAttribute("id");
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove("active", "is-active");
-      if (link.getAttribute("href") === `#${current}`) {
-        link.classList.add("is-active");
-      }
-    });
-  };
-
-  window.addEventListener("scroll", activateMenu);
-  activateMenu(); // i při loadu
-});
-(function () {
-  const targets = document.querySelectorAll("[data-wobble]");
-  if (!targets.length) return;
-
-  targets.forEach((el) => {
-    // ochrana proti dvojímu spuštění
-    if (el.dataset.wobbleDone === "1") return;
-    el.dataset.wobbleDone = "1";
-
-    const text = el.textContent;
-    el.textContent = "";
-
-    [...text].forEach((ch) => {
-      const span = document.createElement("span");
-      span.className = "ch";
-      span.textContent = ch; // bez mezer, tady je to jen "ESGbox"
-      el.appendChild(span);
-    });
-
-    const chars = el.querySelectorAll(".ch");
-
-    const setOffsets = () => {
-      chars.forEach((c) => {
-        const dx = (Math.random() * 2.4 - 1.2).toFixed(2); // -1.2..+1.2 px
-        const dy = (Math.random() * 2.4 - 1.2).toFixed(2); // -1.2..+1.2 px
-        c.style.setProperty("--dx", dx + "px");
-        c.style.setProperty("--dy", dy + "px");
-      });
+        document.querySelectorAll('section').forEach(section => {
+            // Nastavíme výchozí stav přímo v JS, aby web fungoval i bez nich
+            section.style.opacity = "0";
+            section.style.transform = "translateY(30px)";
+            section.style.transition = "all 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67)";
+            observer.observe(section);
+        });
     };
 
-    el.addEventListener("mouseenter", () => {
-      setOffsets();
-      el.classList.add("is-hover");
+    // Pomocná funkce pro zviditelnění (volaná observerem)
+    const styleSheet = document.styleSheets[0];
+    styleSheet.insertRule(`
+        section.is-visible { 
+            opacity: 1 !important; 
+            transform: translateY(0) !important; 
+        }
+    `, styleSheet.cssRules.length);
+
+
+    // 2. MAGNETIC LOGO - Jemná reakce loga na kurzor
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.addEventListener('mousemove', (e) => {
+            const rect = logo.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            logo.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+        });
+
+        logo.addEventListener('mouseleave', () => {
+            logo.style.transform = `translate(0, 0)`;
+        });
+    }
+
+
+    // 3. SMOOTH SCROLL - Hladké navigování mezi sekcemi
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Offset kvůli sticky menu
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
     });
 
-    el.addEventListener("mouseleave", () => {
-      el.classList.remove("is-hover");
+    // 4. POWER-UP KONTAKT - Efekt při kliknutí na CTA
+    const ctaButtons = document.querySelectorAll('.cta-button');
+    ctaButtons.forEach(button => {
+        button.addEventListener('mousedown', () => {
+            button.style.transform = "scale(0.95)";
+        });
+        button.addEventListener('mouseup', () => {
+            button.style.transform = "scale(1.05)";
+            setTimeout(() => {
+                button.style.transform = "translateY(-3px)";
+            }, 150);
+        });
     });
-  });
-})();
 
-const bar = document.querySelector(".scroll-progress");
-window.addEventListener("scroll", () => {
-  const h = document.documentElement;
-  const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-  bar.style.width = scrolled + "%";
+    // Spuštění animací
+    revealSections();
 });
