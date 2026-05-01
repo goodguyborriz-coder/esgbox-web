@@ -1,75 +1,97 @@
 /**
- * ESGBOX - Power-Box Interaction Script
+ * ESGBOX - Dynamic Interaction Script (Orange Edition)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. SCROLL REVEAL - Plynulé "vboxování" sekcí při scrollu
-    const revealSections = () => {
-        const observerOptions = {
-            threshold: 0.15, // Sekce se aktivuje, když je z 15 % vidět
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    // Jakmile se sekce jednou ukáže, přestaneme ji sledovat
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            // Nastavíme výchozí stav přímo v JS, aby web fungoval i bez nich
-            section.style.opacity = "0";
-            section.style.transform = "translateY(30px)";
-            section.style.transition = "all 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67)";
-            observer.observe(section);
-        });
+    // 1. SCROLL REVEAL - Sekce se plynule "vnořují" při skrolování
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
     };
 
-    // Pomocná funkce pro zviditelnění (volaná observerem)
-    const styleSheet = document.styleSheets[0];
-    styleSheet.insertRule(`
-        section.is-visible { 
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = "0";
+        section.style.transform = "translateY(40px)";
+        section.style.transition = "all 0.7s cubic-bezier(0.17, 0.67, 0.83, 0.67)";
+        revealObserver.observe(section);
+    });
+
+    // Dynamické přidání CSS třídy pro viditelnost
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .is-visible { 
             opacity: 1 !important; 
             transform: translateY(0) !important; 
         }
-    `, styleSheet.cssRules.length);
+    `;
+    document.head.appendChild(style);
 
 
-    // 2. MAGNETIC LOGO - Jemná reakce loga na kurzor
+    // 2. MAGNETIC LOGO - Logo reaguje na blízkost kurzoru
     const logo = document.querySelector('.logo');
     if (logo) {
-        logo.addEventListener('mousemove', (e) => {
+        document.addEventListener('mousemove', (e) => {
             const rect = logo.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            
-            logo.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
-        });
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
 
-        logo.addEventListener('mouseleave', () => {
-            logo.style.transform = `translate(0, 0)`;
+            // Výpočet vzdálenosti od loga
+            const distanceX = mouseX - (rect.left + rect.width / 2);
+            const distanceY = mouseY - (rect.top + rect.height / 2);
+            const distance = Math.sqrt(distanceX**2 + distanceY**2);
+
+            // Pokud je myš blízko (méně než 150px), logo se přitáhne
+            if (distance < 150) {
+                const force = (150 - distance) / 150;
+                logo.style.transform = `translate(${distanceX * force * 0.3}px, ${distanceY * force * 0.3}px)`;
+            } else {
+                logo.style.transform = `translate(0, 0)`;
+            }
         });
     }
 
 
-    // 3. SMOOTH SCROLL - Hladké navigování mezi sekcemi
+    // 3. SERVICE CARDS HOVER - Jemné sledování světla
+    // Přidáme efekt, kdy karta mírně reaguje na pozici myši uvnitř
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Vytvoříme iluzi odlesku (spotlight)
+            card.style.background = `
+                radial-gradient(600px circle at ${x}px ${y}px, rgba(255, 107, 0, 0.05), transparent 40%),
+                var(--card-bg)
+            `;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.background = `var(--card-bg)`;
+        });
+    });
+
+
+    // 4. SMOOTH SCROLL - Hladké přechody mezi sekcemi
     document.querySelectorAll('nav a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
-            
             if (href.startsWith('#')) {
                 e.preventDefault();
-                const targetId = href.substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
+                const target = document.querySelector(href);
+                if (target) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80, // Offset kvůli sticky menu
+                        top: target.offsetTop - 70,
                         behavior: 'smooth'
                     });
                 }
@@ -77,20 +99,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. POWER-UP KONTAKT - Efekt při kliknutí na CTA
-    const ctaButtons = document.querySelectorAll('.cta-button');
-    ctaButtons.forEach(button => {
-        button.addEventListener('mousedown', () => {
-            button.style.transform = "scale(0.95)";
-        });
-        button.addEventListener('mouseup', () => {
-            button.style.transform = "scale(1.05)";
-            setTimeout(() => {
-                button.style.transform = "translateY(-3px)";
-            }, 150);
-        });
-    });
-
-    // Spuštění animací
-    revealSections();
 });
