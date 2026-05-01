@@ -1,506 +1,162 @@
-/* =========================================================
-   1. ROOT PROMĚNNÉ
-========================================================= */
-:root{
-  --bg-main:#0b0f14;
-  --bg-card:#121820;
-
-  --text-main:#e6e6e6;
-  --text-muted:#a8b0bb;
-
-  --accent:#ff8a2b;
-
-  --content-max: 1400px;
-  --content-pad: clamp(18px, 5vw, 64px);
-
-  --header-h: 84px;
+/* --- POWER-BOX DESIGN SYSTEM --- */
+:root {
+    --primary-bg: #05070a;      /* Hluboká černá pro "energii boxu" */
+    --card-bg: #0d1117;         /* Původní barva těla jako základ karet */
+    --accent-color: #00ff7f;    /* Energická zelená pro ESG a údernost */
+    --text-main: #e6edf3;       /* Světlý text pro čitelnost */
+    --text-dim: #8b949e;        /* Utlumený text pro detaily */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --transition-fast: 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); /* Úderná animace */
 }
 
-/* =========================================================
-   2. RESET + ZÁKLAD
-========================================================= */
-*,
-*::before,
-*::after{
-  box-sizing: border-box;
+/* Reset a základní nastavení */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-  scroll-behavior: smooth;
+body {
+    background-color: var(--primary-bg);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-body{
-  margin:0;
-  padding-top: var(--header-h);
-
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Roboto, Ubuntu, sans-serif;
-
-  background: var(--bg-main);
-  color: var(--text-main);
-  font-size: 1.26rem;
-  line-height: 1.7;
+/* Dekorativní pozadí - jemný pohyb */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 10% 10%, rgba(0, 255, 127, 0.03) 0%, transparent 50%);
+    z-index: -1;
 }
 
-/* odkazy */
-a{
-  color: inherit;
-  text-decoration: none;
-}
-a:hover{ color: var(--accent); }
-
-/* =========================================================
-   3. GLOBÁLNÍ POZADÍ – ORANŽOVÝ ODLESK
-========================================================= */
-body::before{
-  content:"";
-  position: fixed;
-  inset: -12%;
-  background:
-    radial-gradient(900px 520px at 18% 22%, rgba(255,138,43,0.22), transparent 62%),
-    radial-gradient(760px 460px at 82% 70%, rgba(255,138,43,0.18), transparent 66%);
-  z-index: -1;
-  pointer-events: none;
-  animation: glowMove 18s ease-in-out infinite alternate;
+/* --- TYPOGRAFIE --- */
+h1, h2, h3 {
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
 }
 
-@keyframes glowMove{
-  from{ transform: translate(0,0); }
-  to{ transform: translate(32px,-28px); }
+h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); }
+h2 { font-size: clamp(1.8rem, 5vw, 2.8rem); border-left: 4px solid var(--accent-color); padding-left: 15px; }
+
+/* --- NAVIGACE --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: rgba(5, 7, 10, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
 }
 
-/* =========================================================
-   4. HLAVIČKA + NAVIGACE
-========================================================= */
-.site-header{
-  position: fixed;
-  top:0; left:0;
-  width:100%;
-  min-height: var(--header-h);
-
-  padding: 1.25rem var(--content-pad);
-  display:flex;
-  justify-content: space-between;
-  align-items: center;
-
-  background: linear-gradient(
-    to bottom,
-    rgba(11,15,20,0.92),
-    rgba(11,15,20,0.58)
-  );
-
-  backdrop-filter: blur(8px);
-  z-index: 1000;
+.logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    text-decoration: none;
 }
 
-.logo{
-  font-weight: 750;
-  letter-spacing: 0.10em;
+.logo span { color: var(--accent-color); }
+
+nav ul { display: flex; list-style: none; gap: 30px; }
+nav a {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: var(--transition-fast);
 }
 
-.main-nav{
-  display:flex;
-  gap: 1.2rem;
+nav a:hover { color: var(--accent-color); }
+
+/* --- SECTIONS[cite: 1] --- */
+section {
+    padding: 100px 10%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.main-nav a{
-  position: relative;
-  font-size: 1rem;
-  opacity: 0.9;
-}
-
-.main-nav a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-8px;
-  width:100%;
-  height:2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .25s ease;
-}
-
-.main-nav a:hover::after,
-.main-nav a.active::after{
-  transform: scaleX(1);
-}
-
-/* =========================================================
-   5. SEKCE – JEDNOTNÁ FILOZOFIE
-========================================================= */
-main{ width:100%; }
-
-section{
-  min-height: 100vh;
-  padding: calc(var(--header-h) + 2.5rem) var(--content-pad) 7rem;
-}
-
-/* vnitřní kontejner obsahu */
-.section-inner{
-  max-width: var(--content-max);
-}
-
-/* =========================================================
-   6. TYPOGRAFIE
-========================================================= */
-h1{
-  font-size: clamp(3.1rem, 6vw, 4.8rem);
-  line-height: 1.12;
-  margin: 0 0 1.6rem;
-}
-
-h2{
-  font-size: clamp(2.1rem, 3.2vw, 2.7rem);
-  margin: 0 0 1.9rem;
-}
-
-h3{
-  margin: 0 0 1rem;
-}
-
-p{
-  margin: 0 0 1.35rem;
-  color: var(--text-muted);
-  text-align: left;
-  hyphens: none;
-}
-
-.small{
-  font-size: 1.05rem;
-  opacity: 0.9;
-}
-
-/* =========================================================
-   7. HERO
-========================================================= */
-.hero{
-  display:flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:-20%;
-  background:
-    radial-gradient(900px 560px at 30% 40%, rgba(255,138,43,0.12), transparent 62%),
-    radial-gradient(900px 700px at 75% 30%, rgba(255,255,255,0.04), transparent 65%);
-  filter: blur(70px);
-  z-index:0;
-}
-
-.hero-content{
-  position: relative;
-  z-index:1;
-  max-width: var(--content-max);
-}
-
-/* =========================================================
-   8. GRID + KARTY
-========================================================= */
-.grid{
-  max-width: var(--content-max);
-  display: grid;
-  grid-template-columns: repeat(3, minmax(260px,1fr));
-  gap: 2.6rem;
-  margin-top: 3rem;
-}
-
-@media (max-width: 980px){
-  .grid{ grid-template-columns: 1fr; }
-}
-
-.card{
-  background: linear-gradient(
-    160deg,
-    rgba(255,138,43,0.10),
-    rgba(18,24,32,0.92)
-  );
-  border: 1px solid rgba(255,138,43,0.18);
-  padding: 2.7rem;
-  border-radius: 18px;
-
-  transition: transform .22s ease,
-              box-shadow .22s ease,
-              border-color .22s ease;
-}
-
-.card:hover{
-  transform: translateY(-7px);
-  box-shadow: 0 24px 46px rgba(0,0,0,0.46);
-  border-color: rgba(255,138,43,0.30);
-}
-
-.card h3{
-  color: var(--accent);
-  font-size: 1.38rem;
-}
-
-/* celé karty jako odkazy */
-.card-link{
-  display:block;
-  color: inherit;
-}
-.card-link:hover .card h3{
-  color: #ffd2a8;
-}
-
-/* =========================================================
-   9. SCROLL-IN ANIMACE
-========================================================= */
-.reveal{
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity .7s ease, transform .7s ease;
-}
-
-.reveal.is-visible{
-  opacity: 1;
-  transform: none;
-}
-
-/* =========================================================
-   10. EDITORIAL / VÝCHODISKA
-========================================================= */
-.references{
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
-
-.context-note{
-  max-width: 70ch;
-  font-size: 0.9rem;
-  opacity: 0.85;
-}
-
-.context-note summary{
-  cursor: pointer;
-  color: var(--accent);
-  font-weight: 500;
-}
-
-.context-note summary::after{
-  content: " +";
-}
-.context-note details[open] summary::after{
-  content: " −";
-}
-
-/* =========================================================
-   11. PŘÍSTUPNOST
-========================================================= */
-@media (prefers-reduced-motion: reduce){
-  *{
-    animation: none !important;
-    transition: none !important;
-  }
-  .reveal{
-    opacity:1;
-    transform:none;
-  }
-}
-
-/* =========================================================
-   FAQ – podřízené rozklikávací položky
-========================================================= */
-
-/* FAQ jako celek: lehké odsazení doprava */
-details details {
-  margin-left: 1.6rem;
-}
-
-/* Text FAQ – bílý a čitelný */
-details details p {
-  color: #ffffff;
-}
-
-/* Otázky (summary) FAQ */
-details details summary {
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 0.95rem;
-  opacity: 0.95;
-}
-
-/* Jemné vizuální oddělení */
-details details summary::before {
-  content: "– ";
-  opacity: 0.6;
-}
-/* =========================================================
-   ROZBALOVACÍ SEKCE – VERTIKÁLNÍ RYTMUS
-========================================================= */
-
-/* hlavní rozklikávací bloky (Východiska, Jak to děláme, …) */
-.context-note > details {
-  margin-bottom: 1.4rem;
-}
-
-/* větší mezera po otevření (aby se obsah „nadechl“) */
-.context-note > details[open] {
-  margin-bottom: 2.2rem;
-}
-
-/* FAQ položky – jemnější, ale čitelné rozestupy */
-details details {
-  margin-top: 0.6rem;
-  margin-bottom: 0.6rem;
-}
-
-/* obsah FAQ – lehce odsazený od otázky */
-details details p {
-  margin-top: 0.6rem;
-}
-
-
-/* =========================================================
-   EDITORIAL FOOTER – SPODNÍ ZNALOSTNÍ BLOK
-========================================================= */
-
-#vychodiska {
-  position: relative;
-  margin-top: 6rem;
-  padding-top: 4rem;
-  padding-bottom: 6rem;
-}
-
-/* jemné oddělení od hlavního obsahu */
-#vychodiska::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255,138,43,0.35),
-    transparent
-  );
-  margin-bottom: 3rem;
-}
-
-/* „jiný prostor“ – klidnější, méně kontrastní */
-#vychodiska .context-note {
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.03),
-    rgba(255,255,255,0.01)
-  );
-  border-radius: 20px;
-  padding: 2.8rem 2.6rem;
-}
-
-/* lehké optické zklidnění textu v této části */
-#vychodiska .context-note p,
-#vychodiska .context-note li {
-  opacity: 0.92;
-}
-
-/* =========================================================
-   ROZCESTNÍK – HLAVNÍ ROZKLIKÁVACÍ SEKCE VEDLE SEBE
-========================================================= */
-
-@media (min-width: 900px){
-  .context-note {
+/* --- SERVICES GRID (The "Box" Look)[cite: 1] --- */
+.services-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.4rem 3.2rem;
-  }
-
-  /* zajistíme, že vnitřní FAQ zůstane ve sloupci */
-  .context-note > details {
-    margin-bottom: 0;
-  }
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px; /* Vytvoří tenké linky mezi kartami */
+    background: var(--border-color); /* Barva linek v gridu */
+    border: 1px solid var(--border-color);
+    margin-top: 50px;
 }
 
-
-/* =========================================================
-   ESG BOX – LINE ART
-========================================================= */
-
-.esgbox-lineart {
-  display: flex;
-  justify-content: center;
-  margin: 5rem 0 3rem;
-  color: rgba(255, 255, 255, 0.28);
+.service-card {
+    background: var(--card-bg);
+    padding: 50px;
+    transition: var(--transition-fast);
+    position: relative;
+    overflow: hidden;
 }
 
-.esgbox-lineart svg {
-  width: 20px;
-  height: auto;
+/* Efekt při najetí - úderný a jasný */
+.service-card:hover {
+    background: #161b22;
+    transform: scale(1.02);
+    z-index: 10;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
 }
 
-
-/* PILÍŘE – IKONKY */
-.pillar-icon {
-  display: inline-flex;
-  margin-right: 0.5rem;
-  vertical-align: middle;
-  color: rgba(255,255,255,0.45);
+.service-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; width: 100%; height: 0;
+    background: var(--accent-color);
+    transition: var(--transition-fast);
 }
 
-.pillar-icon svg {
-  width: 20px;
-  height: 20px;
-}
-.wobble {
-  display: inline-block;
+.service-card:hover::after { height: 4px; }
+
+.service-card h3 { color: var(--accent-color); margin-bottom: 10px; }
+.service-card p { color: var(--text-dim); font-size: 0.95rem; }
+
+/* --- TLAČÍTKA[cite: 1] --- */
+.cta-button {
+    display: inline-block;
+    padding: 15px 35px;
+    background: var(--accent-color);
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition-fast);
+    border: none;
+    cursor: pointer;
 }
 
-.wobble .ch {
-  display: inline-block;
-  transition: transform 160ms ease;
-  will-change: transform;
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 255, 127, 0.3);
 }
 
-/* aktivní jen na zařízeních s hoverem */
-@media (hover: hover) {
-  .wobble.is-hover .ch {
-    transform: translate(var(--dx), var(--dy));
-  }
+/* --- RESPONZIVITA[cite: 1] --- */
+@media (max-width: 768px) {
+    nav { padding: 15px 5%; }
+    nav ul { display: none; } /* Pro produkci by zde bylo mobilní menu */
+    section { padding: 60px 5%; }
+    .services-grid { gap: 15px; background: transparent; border: none; }
+    .service-card { border: 1px solid var(--border-color); }
 }
 
-.site-footer {
-  margin-top: 80px;
-  padding: 40px 20px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  text-align: center;
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.6);
-}
-
-.footer-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer-flags {
-  font-size: 1rem;       /* menší než běžné emoji */
-  opacity: 0.6;          /* méně výrazné */
-  letter-spacing: 6px;   /* mezera mezi vlajkami */
-}
-
-.scroll-progress{
-  position: fixed;
-  top: 0; left: 0;
-  height: 2px;
-  width: 0%;
-  background: var(--accent);
-  opacity: 0.6;
-  z-index: 9999;
-}
-
-a[rel~="noopener"]{
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.18);
-}
-a[rel~="noopener"]:hover{
-  border-bottom-color: rgba(255,255,255,0.38);
-}
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--primary-bg); }
+::-webkit-scrollbar-thumb { background: #30363d; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
