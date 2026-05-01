@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESG BOX | Kompaktní síla pro váš reporting</title>
+    <title>ESG BOX | Kompaktní nástroj pro profesionální ESG reporting</title>
+    <meta name="description" content="ESG BOX je profesionální nástroj pro organizaci, analýzu a monitoring vašich ESG dat. Získejte sílu v reportingu díky naší kompaktní schránce.">
+    <!-- Odkaz na externí CSS - cestu ponecháváme relativní pro kořenový adresář -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Navigace se zvýrazněným logem -->
+    <!-- Navigace - Nyní s absolutními odkazy pro budoucí rozšiřitelnost -->
     <nav>
-        <a href="#" class="logo">ESG<span>BOX</span></a>
+        <a href="index.html" class="logo">ESG<span>BOX</span></a>
         <ul>
-            <li><a href="#services">Služby</a></li>
+            <!-- Odkazy směřují na budoucí podstránky ve složce /services/ -->
+            <li><a href="services/analyza.html">Analýza</a></li>
+            <li><a href="services/strategie.html">Strategie</a></li>
+            <li><a href="services/monitoring.html">Monitoring</a></li>
             <li><a href="#about">O projektu</a></li>
-            <li><a href="#contact">Kontakt</a></li>
         </ul>
         <a href="#contact" class="cta-button" style="padding: 10px 20px; font-size: 0.8rem;">Konzultace</a>
     </nav>
 
-    <!-- Hero Sekce - Úderný úvod -->
+    <!-- Hero Sekce - Silný "Boxing" branding -->
     <section id="hero">
         <div class="hero-content">
             <h1>Vaše data v bezpečí. <br><span class="highlight">Váš reporting v útoku.</span></h1>
@@ -27,61 +31,79 @@
                 ESG BOX není jen úložiště. Je to kompaktní nástroj, který organizuje vaše dokumenty 
                 a dává vám sílu vítězit v džungli regulací.
             </p>
-            <a href="#services" class="cta-button">Prozkoumat nástroje</a>
+            <div style="display: flex; gap: 20px;">
+                <a href="services/analyza.html" class="cta-button">Začít analýzou</a>
+                <a href="#about" class="cta-button" style="background: transparent; border: 2px solid var(--accent-color); color: var(--accent-color);">Více o nás</a>
+            </div>
         </div>
     </section>
 
-    <!-- Services Grid - "The Box" look -->
+    <!-- Services Grid - Rozcestník na podstránky -->
     <section id="services">
-        <h2>Naše <span class="highlight">Služby</span></h2>
+        <h2>Naše <span class="highlight">Nástroje</span></h2>
+        <p style="color: var(--text-dim); margin-top: -10px;">Vyberte si konkrétní modul vašeho ESG Boxu.</p>
+        
         <div class="services-grid">
-            <div class="service-card">
+            <!-- Každá karta je nyní proklikávací na vlastní podstránku -->
+            <div class="service-card" onclick="window.location.href='services/analyza.html'" style="cursor: pointer;">
                 <h3>Analýza</h3>
                 <p>Detailní rozbor vašich stávajících procesů a identifikace slabých míst v reportingu.</p>
+                <span style="color: var(--accent-color); font-size: 0.8rem; font-weight: 800; display: block; margin-top: 20px;">ZOBRAZIT DETAIL →</span>
             </div>
-            <div class="service-card">
+
+            <div class="service-card" onclick="window.location.href='services/strategie.html'" style="cursor: pointer;">
+                <h3>Strategie</h3>
+                <p>Návrh úderného postupu pro zlepšení vašich ESG skóre a dlouhodobé udržitelnosti.</p>
+                <span style="color: var(--accent-color); font-size: 0.8rem; font-weight: 800; display: block; margin-top: 20px;">ZOBRAZIT DETAIL →</span>
+            </div>
+
+            <div class="service-card" onclick="window.location.href='services/monitoring.html'" style="cursor: pointer;">
+                <h3>Monitoring</h3>
+                <p>Neustálý dohled nad změnami v legislativě, abyste byli vždy o několik kroků napřed.</p>
+                <span style="color: var(--accent-color); font-size: 0.8rem; font-weight: 800; display: block; margin-top: 20px;">ZOBRAZIT DETAIL →</span>
+            </div>
+
+            <div class="service-card" onclick="window.location.href='services/organizace.html'" style="cursor: pointer;">
                 <h3>Organizace</h3>
                 <p>Kompaktní uložení všech ESG dokumentů na jednom místě, připravené k okamžitému auditu.</p>
-            </div>
-            <div class="service-card">
-                <h3>Strategie</h3>
-                <p>Návrh úderného postupu pro zlepšení vašich ESG skóre a udržitelnosti.</p>
-            </div>
-            <div class="service-card">
-                <h3>Monitoring</h3>
-                <p>Neustálý dohled nad změnami v legislativě, abyste byli vždy o krok napřed.</p>
+                <span style="color: var(--accent-color); font-size: 0.8rem; font-weight: 800; display: block; margin-top: 20px;">ZOBRAZIT DETAIL →</span>
             </div>
         </div>
     </section>
 
-    <!-- O projektu - Sekce pro budoucí text -->
+    <!-- O projektu - Sekce zůstává na hlavní stránce -->
     <section id="about">
-        <h2>O <span class="highlight">Projektu</span></h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-top: 40px;">
+        <h2>Filozofie <span class="highlight">Boxu</span></h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center; margin-top: 40px;">
             <div>
                 <p style="color: var(--text-dim);">
-                    ESG BOX vznikl z potřeby vnést řád do chaosu. Chápeme, že udržitelnost je pro firmy 
-                    výzvou, a proto jsme vytvořili řešení, které je stejně pevné jako krabice, do které 
-                    vše uložíte, a stejně dynamické jako sport, podle kterého se jmenujeme.
+                    ESG BOX vznikl z potřeby vnést řád do chaosu. Chápeme, že udržitelnost je pro moderní firmy 
+                    tou největší výzvou současnosti. Proto jsme vytvořili řešení, které je stejně pevné jako krabice, do které 
+                    vše bezpečně uložíte, a stejně dynamické jako sport, podle kterého se jmenujeme.
+                </p>
+                <p style="color: var(--text-dim); margin-top: 20px;">
+                    Naším cílem je, aby byl váš reporting kompaktní, přehledný a úderný.
                 </p>
             </div>
-            <div style="background: var(--card-bg); height: 200px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;">
-                <span style="color: var(--accent-color); font-weight: 800; font-size: 1.5rem;">[ VIZUÁL BOXU ]</span>
+            <div style="background: var(--card-bg); height: 250px; border: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                <div style="width: 80px; height: 80px; border: 4px solid var(--accent-color); position: relative; margin-bottom: 20px;"></div>
+                <span style="color: var(--accent-color); font-weight: 900; font-size: 1.2rem; letter-spacing: 2px;">THE BOX</span>
             </div>
         </div>
     </section>
 
     <!-- Kontakt -->
-    <section id="contact" style="text-align: center; background: #080a0d; margin-top: 50px;">
-        <h2>Připraveni na <span class="highlight">Duel?</span></h2>
+    <section id="contact" style="text-align: center; border-top: 1px solid var(--border-color);">
+        <h2>Připraveni na <span class="highlight">Další kolo?</span></h2>
         <p style="margin-bottom: 40px; color: var(--text-dim);">Napište nám a společně nastavíme váš ESG reporting na vítěznou vlnu.</p>
-        <a href="mailto:info@esgbox.cz" class="cta-button">Napište nám</a>
+        <a href="mailto:info@esgbox.cz" class="cta-button">Odeslat poptávku</a>
     </section>
 
-    <footer style="padding: 40px 10%; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.8rem; color: #444;">
-        &copy; 2026 ESGBOX.CZ | Všechna práva vyhrazena.
+    <footer style="padding: 40px 10%; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.8rem; color: var(--text-dim);">
+        <p>&copy; 2026 ESGBOX.CZ | Všechna práva vyhrazena.</p>
     </footer>
 
+    <!-- Propojení skriptu -->
     <script src="script.js"></script>
 </body>
 </html>
