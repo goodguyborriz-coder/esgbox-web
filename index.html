@@ -56,59 +56,28 @@
     </nav>
 
     <!-- Hero Sekce -->
-    <section id="hero">
-      <!-- Pozadí s čistou technickou line-art animací (kabely a trasy) -->
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: 0; opacity: 0.15;">
-    <svg viewBox="0 0 1200 600" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <style>
-            .tech-line {
-                fill: none;
-                stroke: #FF7A00;
-                stroke-width: 1.5;
-                stroke-dasharray: 1000;
-                stroke-dashoffset: 1000;
-                animation: drawTech 12s linear infinite;
-            }
-            .tech-node {
-                fill: #FF7A00;
-                opacity: 0.3;
-                animation: pulseNode 4s ease-in-out infinite;
-            }
-            @keyframes drawTech {
-                0% { stroke-dashoffset: 1000; opacity: 0; }
-                10% { opacity: 0.8; }
-                50% { stroke-dashoffset: 0; opacity: 1; }
-                80% { stroke-dashoffset: -500; opacity: 0.5; }
-                100% { stroke-dashoffset: -1000; opacity: 0; }
-            }
-            @keyframes pulseNode {
-                0%, 100% { transform: scale(1); opacity: 0.3; }
-                50% { transform: scale(1.5); opacity: 0.9; }
-            }
-        </style>
+    <section id="hero" style="position: relative; overflow: hidden;">
+      <!-- Pozadí s plynulou videosmyčkou deep-tech ESG energetiky -->
+      <video autoplay muted loop playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.25; pointer-events: none;">
+          <source src="assets/video.mp4" type="video/mp4">
+          Váš prohlížeč nepodporuje přehrávání videí v pozadí.
+      </video>
 
-        <!-- Trasa 1: Levá síť / přívod -->
-        <g>
-            <path class="tech-line" d="M -50,150 L 250,150 L 350,250 L 550,250 L 650,100 L 950,100" />
-            <circle class="tech-node" cx="250" cy="150" r="4" />
-            <circle class="tech-node" cx="550" cy="250" r="4" style="animation-delay: 1s;" />
-        </g>
+      <!-- Tmavý překryv (overlay) pro zajištění maximální čitelnosti textu -->
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8, 10, 13, 0.65); z-index: 1; pointer-events: none;"></div>
 
-        <!-- Trasa 2: Centrální křížení (kabeláž / sběrnice) -->
-        <g>
-            <path class="tech-line" d="M 100,450 L 300,450 L 450,300 L 750,300 L 900,450 L 1250,450" style="animation-delay: 2s;" />
-            <circle class="tech-node" cx="450" cy="300" r="4" style="animation-delay: 2s;" />
-            <circle class="tech-node" cx="900" cy="450" r="4" style="animation-delay: 3s;" />
-        </g>
-
-        <!-- Trasa 3: Detailní diagnostické smyčky (připomínající topologii sítě) -->
-        <g>
-            <path class="tech-line" d="M 350,50 L 350,200 L 500,350 L 800,350 L 950,200 L 950,50" style="animation-delay: 4s;" stroke-width="1" />
-            <circle class="tech-node" cx="500" cy="350" r="3" style="animation-delay: 1.5s;" />
-            <circle class="tech-node" cx="800" cy="350" r="3" style="animation-delay: 2.5s;" />
-        </g>
-    </svg>
-</div>        <div class="hero-content">
+      <!-- Obsah hero sekce musí mít vyšší z-index, aby byl nad videem -->
+      <div class="hero-content" style="position: relative; z-index: 2;">
+          <h1>Přesná data v terénu i kotelně. <br><span class="highlight">Výrazná úspora ve výstavbě.</span></h1>
+          <p style="color: var(--text-dim); max-width: 720px; font-size: 1.15rem; margin-bottom: 30px; margin-top: 20px;">
+              ESGBOX není další teoretická poradenská šablona. Je to modulární inženýrská platforma, která propojuje prostorový a geologický screening, topologickou optimalizaci kabelových tras, termodynamické výpočty uhlíkové stopy kotelen (<a href="https://ghgprotocol.org/corporate-standard" target="_blank" rel="noopener noreferrer" class="leg-link" title="GHG Protocol Corporate Accounting and Reporting Standard">Scope 1–3</a>) a legislativní due diligence do jednoho auditovatelného Compliance BOXu.
+          </p>
+          <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+              <a href="services/analyza.html" class="cta-button">Spustit GeoBOX screening</a>
+              <a href="services/kotelny.html" class="cta-button" style="background: transparent; border: 2px solid var(--accent-color); color: var(--accent-color);">Řešení pro kotelny (HeatBOX)</a>
+          </div>
+      </div>
+    </section></div>        <div class="hero-content">
             <h1>Přesná data v terénu i kotelně. <br><span class="highlight">Výrazná úspora ve výstavbě.</span></h1>
             <p style="color: var(--text-dim); max-width: 720px; font-size: 1.15rem; margin-bottom: 30px; margin-top: 20px;">
                 ESGBOX není další teoretická poradenská šablona. Je to modulární inženýrská platforma, která propojuje prostorový a geologický screening, topologickou optimalizaci kabelových tras, termodynamické výpočty uhlíkové stopy kotelen (<a href="https://ghgprotocol.org/corporate-standard" target="_blank" rel="noopener noreferrer" class="leg-link" title="GHG Protocol Corporate Accounting and Reporting Standard">Scope 1–3</a>) a legislativní due diligence do jednoho auditovatelného Compliance BOXu.
