@@ -3,9 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoBOX – Screening pozemků a geologických rizik pro FVE | ESGBOX</title>
-    <meta name="description" content="Automatizovaný GIS screening pozemků pro FVE. Exaktní analýza sklonu, eroze půdy, povodňových oblastí, ochranných pásem a čisté zastavitelné plochy.">
+    <title>GeoBOX – Automatizovaný screening pozemků pro OZE | ESGBOX</title>
+    <meta name="description" content="Automatizovaný prostorový, právní a environmentální screening pozemků pro výstavbu FVE, větrných parků a energetické infrastruktury.">
     <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Kontejner pro hero nadpis s decentním videem na pozadí */
+        .hero-video-banner {
+            position: relative;
+            padding: 60px 45px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-color);
+            overflow: hidden;
+            background: #080a0d;
+            margin-bottom: 50px;
+        }
+
+        .hero-video-banner video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            /* Ztlumení jasu, zvýšení kontrastu a lehká desaturace pro technický vzhled */
+            filter: brightness(0.28) contrast(1.15) saturate(0.75);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Přechodová vrstva pro maximální čitelnost textu vlevo */
+        .hero-video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(8, 10, 13, 0.92) 0%,
+                rgba(8, 10, 13, 0.70) 55%,
+                rgba(8, 10, 13, 0.45) 100%
+            );
+            backdrop-filter: blur(2px);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-video-content {
+            position: relative;
+            z-index: 3;
+            max-width: 850px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 122, 0, 0.12);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            padding: 5px 12px;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
 
@@ -17,115 +79,97 @@
             <li><a href="monitoring.html">GridBOX</a></li>
             <li><a href="kotelny.html">HeatBOX (Kotelny)</a></li>
             <li><a href="organizace.html">Compliance</a></li>
+            <li><a href="../index.html#about">Architektura</a></li>
         </ul>
-        <a href="../index.html#contact" class="cta-button" style="padding: 10px 20px; font-size: 0.8rem;">Poptat screening</a>
+        <a href="../index.html#contact" class="cta-button" style="padding: 10px 20px; font-size: 0.8rem;">Poptat audit</a>
     </nav>
 
-    <!-- Hero / Úvodní sekce modulu -->
     <section>
-        <div style="margin-bottom: 40px;">
+        <div style="margin-bottom: 30px;">
             <a href="../index.html" style="color: var(--accent-color); text-decoration: none; font-size: 0.8rem; font-weight: 800; letter-spacing: 1px;">← ZPĚT NA ROZCESTNÍK</a>
         </div>
-          <video autoplay muted loop playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.8; pointer-events: none; -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 95%); mask-image: radial-gradient(circle at center, black 40%, transparent 95%);">
-    <source src="assets/video.mp4" type="video1/mp4">
-    Váš prohlížeč nepodporuje přehrávání videí v pozadí.
-</video>
-        <div style="font-size: 0.8rem; color: var(--accent-color); font-weight: 800; letter-spacing: 2px; margin-bottom: 10px;">MODUL // FVE SCREENING POZEMKŮ</div>
-        <h1>Geo<span class="highlight">BOX</span></h1>
-        <p style="color: var(--text-dim); margin-top: 10px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Prostorová analýza terénu, erozních rizik a legislativních limitů</p>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 60px; margin-top: 50px; align-items: start;">
-            
-            <!-- Levý sloupec: Hlavní hodnotová nabídka -->
+        <!-- Hero blok s videem pod nadpisem -->
+        <div class="hero-video-banner">
+            <video autoplay loop muted playsinline>
+                <source src="../assets/video1.MP4" type="video/mp4">
+                <source src="assets/video1.MP4" type="video/mp4">
+            </video>
+            <div class="hero-video-overlay"></div>
+            <div class="hero-video-content">
+                <span class="hero-badge">Automated OZE Site Selection // FVE &amp; VTE</span>
+                <h1 style="margin: 0; text-shadow: 0 2px 15px rgba(0, 0, 0, 0.85);">Modul <span class="highlight">GeoBOX</span></h1>
+                <p style="color: var(--text-main); opacity: 0.9; margin-top: 14px; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);">
+                    Automatizovaný právní, environmentální a morfologický screening pozemků pro FVE a větrné parky
+                </p>
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 60px; margin-top: 40px; align-items: start;">
             <div class="content-text">
-                <p style="font-size: 1.35rem; color: var(--text-main); margin-bottom: 25px; font-weight: 600; line-height: 1.4;">
-                    Odhalte fatální showstoppery ještě před nákupem pozemku a investicí do drahých projektových prací.
+                <p style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 25px; font-weight: 600; line-height: 1.35;">
+                    Máte vytipované desítky parcel pro solární nebo větrný park? Náš skript z nich během zlomku času vyfiltruje ty nejlepší a odhalí skryté showstoppery dříve, než utopíte rozpočet v projekčních pracích.
                 </p>
                 <p style="color: var(--text-dim); margin-bottom: 20px; line-height: 1.7;">
-                    Modul <strong>GeoBOX</strong> je specializovaná screeningová služba postavená pro developerské projekty fotovoltaických elektráren (FVE). Namísto zdlouhavého ručního obcházení úřadů a vrstvení katastrálních map nad nekonzistentními podklady poskytujeme exaktní, strojově spočítanou 3D analýzu přímo nad naším vysoce výkonným GIS stackem.
+                    GeoBOX je automatizovaný výpočetní nástroj pro rychlé předprojektové <em>due diligence</em> zájmových území. Nad portfoliem kandidátních pozemků spouštíme prostorový skript, který propojuje katastrální data, inženýrské sítě, digitální modely reliéfu a environmentální limity. Každé parcele přiřadí skóre proveditelnosti a vybere lokality s nejvyšší návratností a nejnižším povolovacím rizikem.
                 </p>
-                <p style="color: var(--text-dim); margin-bottom: 30px; line-height: 1.7;">
-                    Systém automaticky prověřuje morfologii terénu, sklonitost svahů, hydrologická rizika i střety se zájmy ochrany přírody.
-                </p>
-
-                <div style="background: rgba(255, 122, 0, 0.05); border-left: 3px solid var(--accent-color); padding: 20px; margin-top: 30px;">
-                    <div style="font-size: 0.8rem; color: var(--accent-color); font-weight: 800; letter-spacing: 1px; margin-bottom: 5px;">INŽENÝRSKÝ STANDARD ESGBOX</div>
-                    <p style="color: var(--text-main); font-size: 0.95rem; margin: 0; line-height: 1.6;">
-                        Výpočetní modely běží na lokálním high-end hardwaru (128 GB+ RAM) s podporou přesných souřadnicových systémů S-JTSK a WGS 84. Žádné kompromisy, čistá data.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Pravý sloupec: Klíčové pilíře screeningu -->
-            <div style="background: #12161c; border: 1px solid var(--border-color); padding: 40px; position: relative;">
-                <div style="position: absolute; top: -12px; right: 30px; background: var(--accent-color); color: #080a0d; font-size: 0.75rem; font-weight: 900; padding: 4px 10px; letter-spacing: 1px;">
-                    CORE MODULES
-                </div>
-                
-                <h3 style="color: var(--text-main); font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 1px;">CO GEOSCREENINGS PŘEVĚŘUJE</h3>
-                
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color);">
-                        <strong style="color: var(--accent-color); display: block; margin-bottom: 6px; font-size: 1rem;">1. Morfologie a sklon pozemku</strong>
-                        <span style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Analýza sklonitosti, orientace svahů (aspektu) vůči slunečnímu svitu a identifikace terénních zlomů nevhodných pro instalaci FVE konstrukcí.</span>
+                <ul style="list-style: none; color: var(--text-dim); margin-top: 30px;">
+                    <li style="margin-bottom: 18px; display: flex; align-items: flex-start;">
+                        <span style="color: var(--accent-color); margin-right: 15px; font-weight: 900;">[01]</span>
+                        <span><strong>Právní a katastrální průchodnost:</strong> Automatizovaná kontrola struktury vlastnictví (rozdrobenost spoluvlastnických podílů), detekce věcných břemen, zástavních práv a ochranných pásem dopravní i technické infrastruktury.</span>
                     </li>
-                    <li style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color);">
-                        <strong style="color: var(--accent-color); display: block; margin-bottom: 6px; font-size: 1rem;">2. Environmentální a hydrologická rizika</strong>
-                        <span style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Detekci povodňových zón, ohrožení erozí půdy (ZPF), sklonových nestabilit a hladiny podzemní vody.</span>
+                    <li style="margin-bottom: 18px; display: flex; align-items: flex-start;">
+                        <span style="color: var(--accent-color); margin-right: 15px; font-weight: 900;">[02]</span>
+                        <span><strong>Environmentální a terénní rizika:</strong> Vyhodnocení povodňových zón (Q5, Q20, Q100), erozní ohroženosti půdy, bonity ZPF (třídy ochrany I. a II.), lesních pozemků (PUPFL), sklonitosti a orientace svahů i kolizí s chráněnými územími (Natura 2000, ÚSES).</span>
                     </li>
-                    <li style="margin-bottom:hatikan; margin-bottom: 0;">
-                        <strong style="color: var(--accent-color); display: block; margin-bottom: 6px; font-size: 1rem;">3. Legislativní ochranná pásma</strong>
-                        <span style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Průniky s inženýrskými sítěmi, lesními pozemky (PUPFL), prvkity ÚSES, Natura 2000 a dalšími limity využití území.</span>
+                    <li style="margin-bottom: 18px; display: flex; align-items: flex-start;">
+                        <span style="color: var(--accent-color); margin-right: 15px; font-weight: 900;">[03]</span>
+                        <span><strong>Multikriteriální ranking portfolia:</strong> Exaktní porovnání všech zadaných lokalit mezi sebou, odečtení nezastavitelných bufferů a výpočet čisté využitelné plochy (<em>net buildable area</em>) pro rozmístění FVE stringů, tubusů VTE či navazující výstavby.</span>
                     </li>
                 </ul>
-
-                <div style="margin-top: 35px;">
-                    <a href="../index.html#contact" class="cta-button" style="width: 100%; text-align: center; display: block;">MÁM ZÁJEM O SCREENING POZEMKU</a>
-                </div>
             </div>
 
+            <!-- Pravý sloupec: Karta výstupu -->
+            <div style="background: var(--card-bg); padding: 50px 40px; border: 1px solid var(--border-color); border-left: 4px solid var(--accent-color); position: relative;">
+                <div style="position: absolute; top: 20px; right: 20px; opacity: 0.1; font-size: 4rem; font-weight: 900; color: var(--accent-color);">01</div>
+                <h3 style="color: var(--accent-color); margin-bottom: 25px; letter-spacing: 2px;">VÝSTUP: RANKING LOKALIT &amp; GIS VRSTVY</h3>
+                <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px;">
+                    Výstupem modulu GeoBOX je <strong>rozhodovací matice kandidátních pozemků</strong> seřazená podle míry rizika a technické vhodnosti, doplněná o nativní prostorové vrstvy (GeoPackage, Shapefile, GeoJSON, DXF) a souhrnný PDF report.
+                </p>
+                <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.7;">
+                    Okamžitě vidíte, které parcely z vašeho shortlistu dávají ekonomický i legislativní smysl, kde vás zastaví věcné břemeno či záplavové území a jaká je reálná čistá plocha pro instalaci výkonu.
+                </p>
+                <div style="margin-top: 40px;">
+                    <a href="../index.html#contact" class="cta-button" style="width: 100%; text-align: center; display: block;">POPTAT SCREENING POZEMKŮ</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Sekce: Výstupní data a GIS vizualizace -->
+    <!-- Sekce s GIS / Multicriteria Vizualizací -->
     <section style="padding-top: 40px; border-top: 1px solid var(--border-color);">
-        <div style="font-size: 0.8rem; color: var(--accent-color); font-weight: 800; letter-spacing: 2px; margin-bottom: 10px;">VÝSTUPNÍ DATOVÉ SADY</div>
-        <h2>Exaktní <span class="highlight">GIS vrstvy</span> &amp; Report</h2>
-        <p style="color: var(--text-dim); margin-top: 10px; max-width: 900px; line-height: 1.6;">
-            Výstupem není jen obecné povídání, ale tvrdá data, se kterými může hned pracovat váš projektant i investiční oddělení.
+        <h2>Automatizovaný <span class="highlight">Spatial Scoring Engine</span></h2>
+        <p style="color: var(--text-dim); margin-top: 10px; max-width: 900px;">
+            Skriptovací pipeline pro hromadné vyhodnocování parcel, syntézu katastrálních a environmentálních vrstev a generování map prostorového odporu v souřadnicových systémech S-JTSK (EPSG:5514) a WGS 84.
         </p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px;">
-            <div style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 30px;">
-                <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 15px;">Čistá zastavitelná plocha</h3>
-                <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Přesné vymezení (buildable area) po odečtení všech ochranných pásem a erozních bloků pro maximální efektivitu stringů.</p>
-            </div>
-            <div style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 30px;">
-                <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 15px;">Nativní GIS formáty</h3>
-                <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Data dodáváme v standardizovaných formátech připravených k okamžitému načtení do QGIS či ArcGIS (GeoPackage, Shapefile, DXF).</p>
-            </div>
-            <div style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 30px;">
-                <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 15px;">Rizikový screeningový report</h3>
-                <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Přehledné shrnutí identifikovaných rizik s doporučením dalšího postupu pro územní řízení a stavební povolení.</p>
-            </div>
-        </div>
-
-        <!-- ArcGIS / GIS Engine Ukázka -->
-        <div style="background: #080a0d; border: 1px solid var(--border-color); padding: 30px; margin-top: 50px;">
+        <!-- GIS Engine Vizualizace -->
+        <div style="background: #080a0d; border: 1px solid var(--border-color); padding: 30px; margin-top: 40px;">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 20px;">
                 <div>
-                    <div style="font-size: 0.8rem; color: var(--accent-color); font-weight: 800; letter-spacing: 1px; margin-bottom: 6px;">SPATIAL ENGINE // GIS RUNTIME</div>
-                    <h3 style="color: var(--text-main); font-size: 1.25rem;">Topografická a erozní analýza území</h3>
+                    <div style="font-size: 0.8rem; color: var(--accent-color); font-weight: 800; letter-spacing: 1px; margin-bottom: 6px;">GEOBOX PIPELINE // MULTICRITERIA LAND SCREENING</div>
+                    <h3 style="color: var(--text-main); font-size: 1.25rem;">Syntéza právních omezení, morfologie terénu a environmentálních rizik</h3>
                 </div>
                 <div style="background: rgba(255, 122, 0, 0.1); border: 1px solid var(--accent-color); padding: 6px 14px; font-size: 0.75rem; color: var(--accent-color); font-weight: 700; letter-spacing: 1px;">
-                    STATUS: OPTIMALIZED
+                    AUTOMATED BATCH SCORING
                 </div>
             </div>
 
+            <!-- Obal pro GIS screenshot s inženýrským rámečkem -->
             <div style="border: 1px solid var(--border-color); background: #0d1117; overflow: hidden; position: relative;">
-                <img src="../assets/gis-heatmap.jpg" alt="GeoBOX GIS Terrain Screening Engine" style="width: 100%; height: auto; display: block; opacity: 0.95;">
+                <img src="../assets/gis-heatmap.jpg" alt="GeoBOX Prostorový Screening Pozemků" style="width: 100%; height: auto; display: block; opacity: 0.95;">
                 <div style="position: absolute; bottom: 15px; left: 15px; background: rgba(5, 7, 10, 0.85); border: 1px solid var(--border-color); padding: 8px 12px; font-family: monospace; font-size: 0.75rem; color: var(--text-dim);">
-                    CRS: S-JTSK / Krovak East North | Buffer: Active
+                    CRS: S-JTSK (EPSG:5514) | Layers: KN, OP Sítí, Q100, DMR 5G, BPEJ | Status: Evaluated
                 </div>
             </div>
         </div>
