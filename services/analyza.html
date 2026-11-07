@@ -28,23 +28,23 @@
             height: auto;
             transform: translate(-50%, -50%);
             object-fit: cover;
-            /* Ztlumení jasu, zvýšení kontrastu a lehká desaturace pro technický vzhled */
-            filter: brightness(0.28) contrast(1.15) saturate(0.75);
+            /* Vyvážený jas a kontrast, aby video bylo dobře vidět a nerušilo text */
+            filter: brightness(0.45) contrast(1.1) saturate(0.85);
             z-index: 1;
             pointer-events: none;
         }
 
-        /* Přechodová vrstva pro maximální čitelnost textu vlevo */
+        /* Přechodová vrstva pro čitelnost textu vlevo */
         .hero-video-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(
                 90deg,
-                rgba(8, 10, 13, 0.92) 0%,
-                rgba(8, 10, 13, 0.70) 55%,
-                rgba(8, 10, 13, 0.45) 100%
+                rgba(8, 10, 13, 0.85) 0%,
+                rgba(8, 10, 13, 0.55) 55%,
+                rgba(8, 10, 13, 0.25) 100%
             );
-            backdrop-filter: blur(2px);
+            backdrop-filter: blur(1px);
             z-index: 2;
             pointer-events: none;
         }
@@ -91,12 +91,12 @@
         
         <!-- Hero blok s videem pod nadpisem -->
         <div class="hero-video-banner">
-            <video autoplay loop muted playsinline>
-                <source src="../assets/video1.MP4" type="video/mp4">
-                <source src="assets/video1.MP4" type="video/mp4">
+            <video autoplay loop muted playsinline src="../assets/video1.mp4">
+                <source src="../assets/video1.mp4" type="video/mp4">
             </video>
             <div class="hero-video-overlay"></div>
             <div class="hero-video-content">
+                <span class="hero-badge">Automated OZE Site Selection // FVE &amp; VTE</span>
                 <h1 style="margin: 0; text-shadow: 0 2px 15px rgba(0, 0, 0, 0.85);">Modul <span class="highlight">GeoBOX</span></h1>
                 <p style="color: var(--text-main); opacity: 0.9; margin-top: 14px; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);">
                     Automatizovaný právní, environmentální a morfologický screening pozemků pro FVE a větrné parky
